@@ -1,0 +1,42 @@
+
+.drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 370px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.8s ease-in-out;
+    z-index: 1031;
+    overflow-y: auto;
+  }
+  
+  .drawer.open {
+    transform: translateX(0);
+  }
+  
+  .drawer-content {
+    padding: 0px;
+    position: relative; /* Ensure content is positioned relative to Drawer */
+  }
+
+
+  @media (max-width: 768px) {
+    .drawer {
+      width: 100%; /* Full width for smaller screens */
+      max-width:100%; /* Limit maximum width */
+    }
+    .item-details{
+      margin: 5% 0% 0% 40%;
+
+    }
+  }
+/* Model */
+
+
+/* Drawer.css or new CSS file for modal styling */
+
+
+

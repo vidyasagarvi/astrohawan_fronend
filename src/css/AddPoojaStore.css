@@ -1,0 +1,72 @@
+/* src/css/AddPoojaStore.css */
+.add-pooja-store {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-pooja-store h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.add-pooja-store .form-group {
+    margin-bottom: 15px;
+}
+
+.add-pooja-store .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.add-pooja-store .form-group input,
+.add-pooja-store .form-group select  {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.add-pooja-store .form-group .ck-editor__editable_inline {
+    min-height: 300px;
+}
+
+.add-pooja-store .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-pooja-store .btn:hover {
+    background-color: #0056b3;
+}
+
+.add-pooja-store .form-group input[type="file"] {
+    padding: 3px;
+}
+
+.existing-images{
+    padding: 10px 0px 10px 5px;
+    border: 1px solid;
+    margin: 10px 10px 10px 0px;
+}
+
+.existing-images img{
+    padding: 5px 5px 5px 5px;
+    border: 1px solid;
+    margin: 10px 10px 10px 0px;
+}

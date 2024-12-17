@@ -2,6 +2,7 @@ const Config = {
     apiUrl: 'http://localhost:3000/',
     endpoints: {
       pujastore: 'api/pujastore',
+      pujastoreAdmin: 'api/pujastore/admin/store',
       SignIn: 'api/login',
       SignUp: 'api/register'
       //getpujaProducts: (id) => `/product/${id}`,
@@ -11,3 +12,4 @@ const Config = {
   };
   
   export default Config;
+

@@ -1,0 +1,58 @@
+.navbar-admin {
+    overflow: hidden;
+    background-color: #333; 
+    text-align: center;
+  }
+  
+  .navbar-admin a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center !important;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .subnav-admin {
+    float: left;
+    overflow: hidden;
+  }
+  
+  .subnav-admin .subnavbtn-admin {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+  }
+  
+  .navbar-admin a:hover, .subnav-admin:hover .subnavbtn-admin {
+    background-color: red;
+  }
+  
+  .subnav-content-admin {
+    display: none;
+    position: absolute;
+    left: 0;
+    background-color: red;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .subnav-content-admin a {
+    float: left;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .subnav-content-admin a:hover {
+    background-color: #eee;
+    color: black;
+  }
+  
+  .subnav-admin:hover .subnav-content-admin {
+    display: block;
+  }

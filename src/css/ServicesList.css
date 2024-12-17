@@ -1,0 +1,43 @@
+.service-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+.service-card{
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 350px;
+    min-height: 270px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom-right-radius: unset;
+    border-bottom-left-radius: unset;
+}
+
+.service-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.service-card h3 {
+    margin-top: 10px;
+    font-size: 21px;
+    color: #0c0b0b;
+    font-family: Montserrat !important;
+}
+
+.service-card ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.service-card .perticipate_link{
+    width: 99% !important;
+    border-radius: 12px !important;
+    background-color: rgb(20, 148, 110);
+    color: #ffffff  !important;
+}
