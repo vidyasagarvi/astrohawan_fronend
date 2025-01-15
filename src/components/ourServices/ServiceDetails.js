@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import Accordion from 'react-bootstrap/Accordion';
 import CommonCart from '../CommonCart';
+import Disclamer from '../Disclamer.js';
 
 function ServiceDetails() {
     const { t } = useTranslation();
@@ -334,6 +335,8 @@ function ServiceDetails() {
                                                 </Accordion>
 
                                             </div>
+                                            <h2>Disclamer</h2>
+                                            {<Disclamer  />}
 
                                             <div className='mandir-list' id="nav-product" role="tabpanel" aria-labelledby="nav-product-tab">
                                                 <h2>{t('products_to_aid_devotees')}</h2>
@@ -362,7 +365,7 @@ function ServiceDetails() {
                                                                 </div>
                                                                 <div className='mandir-content'>
                                                                     <h3>{product.title}</h3>
-                                                                    <p><strong>Price / Unit:</strong> {product.price}</p>
+                                                                    <p><strong>Price :</strong> {product.price}  {product.price_description} </p>
                                                                     <p>{product.description}</p>
                                                                 </div>
 

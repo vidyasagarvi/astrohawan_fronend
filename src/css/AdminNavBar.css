@@ -30,7 +30,8 @@
   }
   
   .navbar-admin a:hover, .subnav-admin:hover .subnavbtn-admin {
-    background-color: red;
+    background-color: #00bd68;
+    color: #fff;;
   }
   
   .subnav-content-admin {

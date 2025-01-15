@@ -32,7 +32,14 @@ const Drawer = ({ isOpen, onClose, totalQuantity, productsByCategory }) => {
     cartItems.forEach(({ productId, quantity }) => {
       const product = findProductById(productId);
       if (product) {
-        totalPrice += product._price * quantity;
+        if(product._discount>0){
+          const discount = product._price - (product._price * product._discount) / 100;
+          totalPrice += discount * quantity;
+        }else{
+           totalPrice += product._price * quantity;
+        }
+       
+       
       }
     });
     return totalPrice.toFixed(2);
@@ -64,6 +71,20 @@ const Drawer = ({ isOpen, onClose, totalQuantity, productsByCategory }) => {
       console.error('Failed to fetch user details:', error);
     }
   };
+  const truncateText = (text, maxLength) => {
+    if (!text) return '';
+    const strippedText = text.replace(/<[^>]+>/g, ''); // Remove HTML tags
+    if (strippedText.length <= maxLength) {
+        return strippedText;
+    }
+
+    return (
+        <>
+            {strippedText.substring(0, maxLength)}
+        </>
+    );
+    // return strippedText.substring(0, maxLength) +  'More ...';
+};
 
   return (
     <div>
@@ -89,8 +110,20 @@ const Drawer = ({ isOpen, onClose, totalQuantity, productsByCategory }) => {
                       <img src={`${Config.apiUrl}${product._images[0]}`} alt={product._images[0]} className="item-image" />
                     </div>
                     <div className="item-details">
-                      <p>{product._categoryId[0].title}</p>
-                      <p className='price'>{t('price')}: {product._price}</p>
+                    <p> {truncateText(product._categoryId[0].title, 70)}</p>
+                      <p className='price'>
+                      {product._discount > 0 ? (
+                      <div>
+                       <span className="p_price1">{t('price')}{product._price}</span>
+                        <spna style={{marginLeft:"7px"}}>{t('price')}{ product._price - (product._price * product._discount) / 100}</spna>
+                      </div>
+                      ) : (
+                      <span className="no-discount">
+                      {t('price')}: {product._price}
+                      </span>
+                      )}
+                        
+                        </p>
                       <div className="quantity-selector">
                         <button className="quantity-btn" onClick={() => handleUpdateQuantity(productId, -1)}>-</button>
                         <div className='quantity'>{quantity}</div>
@@ -153,7 +186,7 @@ const Drawer = ({ isOpen, onClose, totalQuantity, productsByCategory }) => {
         userDetails={userDetails}
         cartItems={cartItems.map(({ productId, quantity }) => {
           const product = findProductById(productId);
-          return product ? {type:'store',id:product._id ,parentId:'store', title: product._categoryId[0]?.title || '', price: product._price, quantity , images:product._images[0]} : {};
+          return product ? {type:'store',id:product._id ,parentId:'store', title: product._categoryId[0]?.title || '', price: product._price,discount: product._discount, quantity , images:product._images[0]} : {};
         })}
       />
     </div>

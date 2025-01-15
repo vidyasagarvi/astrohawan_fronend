@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Disclamer from '../Disclamer.js';
+import ReturnsPolicy from '../ReturnsPolicy.js';
 
 function PujaStoreDetails({ setIsDrawerOpen }) {
     const { t } = useTranslation();
@@ -61,8 +63,7 @@ function PujaStoreDetails({ setIsDrawerOpen }) {
             try {
                 const response = await fetch(`${Config.apiUrl}${Config.endpoints.pujastore}?lang=${language}`);
                 const data = await response.json();
-                console.log('related product', data[0]['_products'])
-
+                
                 if (response.ok) {
                     setRelatedProducts(data);
                 } else {
@@ -200,38 +201,12 @@ function PujaStoreDetails({ setIsDrawerOpen }) {
                                        
                                             
                                             <h3>Returns Policy</h3>
-                                            
-                                            <ul>
-                                                <li>Our return policy lasts for 5 days from the date of delivery. Kindly contact us for any return/refund/exchange within 5 days from the date of delivery</li>
-                                                
-                                                <li>Return policy is applicable in case of damaged / defected items only.</li>
-                                                
-                                                <li>Item must be unused & to be packed in original packaging.</li>
-                                                
-                                                <li> Item will be inspected before processing the refund/exchange.</li>
-                                                
-                                                <li> In case the customer is not satisfied with the product or has had a change of mind, then the customer is responsible to send the product back to us. Post receiving the product we will check the quality of the same and then proceed with the refund. Return courier charges are to be borne by the customer in this case. Please note, My Pooja Box offers reverse pick-up only in case of defects/wrong product delivered.</li>
 
-                                                <li>To request a return/exchange, please email us at info@thesatim.com or whatsapp us at +91 70425 55040 with your order number, pictures of the item that you wish to return/exchange and the reasons.</li>
-
-                                                <li>We will arrange a reverse pick-up of the products within 2-4 working days.</li>
-
-                                                <li>Upon receiving the returned products, prepaid orders will be refunded as soon as our inspection team approves the return.</li>
-
-                                                <li> COD orders: Customers will be required to provide their bank details where they would like to receive the refund.</li>
-                                            </ul>
-                                            <h3>Shipping</h3>
-                                            <ul>
-                                                
-                                                <li>We aim to dispatch all orders within 72 hours. In case of missing items/ unavailability or delay, we will inform you via email or whatsapp with the expected date of dispatch.</li>
-
-                                                <li>Most orders are delivered by our courier partners within 8 to 14 days from the date of dispatch.</li>
-
-                                                <li>Shipping is free on all paid orders.</li>
-                                            </ul>
-
-
+                                            {<ReturnsPolicy  />}
+                                         
                                     </div>
+                                    <h2>Disclamer</h2>
+                                    {<Disclamer  />}
                                 </div>
                             </div>
 

@@ -32,9 +32,6 @@ const Pujas = ({setIsDrawerOpen, productsByCategory }) => {
     // return strippedText.substring(0, maxLength) +  'More ...';
 };
 
-
-
-
   return (
     <div className="container-fluid py-1">
       <div className="container">
@@ -46,6 +43,8 @@ const Pujas = ({setIsDrawerOpen, productsByCategory }) => {
                 <div key={product._id} className="col-md-5 col-lg-5 col-xl-3">
                   <div className="card storeitems" >
                   <Link to={`/pooja-store/${product._id}?lang=${language}`}>
+
+                  <span className="card-imgtext">{t('cart_imgtext')}</span>
        
                     {product._discount>0 ? (
                         <span className="card-discount">{product._discount}% OFF</span>

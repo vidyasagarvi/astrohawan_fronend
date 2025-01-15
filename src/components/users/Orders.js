@@ -91,7 +91,7 @@ function OrderDashboard() {
                             </td>
                             <td style={{ border: '1px solid #ddd', padding: '8px' }}>
                                 <button
-                                    onClick={() => showOrderDetails(order.id)}
+                                    onClick={() => showOrderDetails(order.order_id)}
                                     style={{
                                         backgroundColor: '#4CAF50',
                                         color: 'white',

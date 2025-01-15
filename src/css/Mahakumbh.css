@@ -1,0 +1,128 @@
+.col-lg-10{
+    margin: 0px auto;
+}
+
+.mahakumbh .page-header{
+    margin: 10px 0px 10px 0px !important;
+}
+
+.header-banner img {
+    object-fit: fill;
+}
+
+.mahakumbh-cart{
+     background: linear-gradient(rgb(255, 230, 202), white);
+}
+
+.card-title-mahakumbh {
+    font-weight: bold;
+    font-size: 15px;
+    color: #423838;
+    line-height: 25px;
+    padding: 10px 0px 0px 0px !important;
+}
+
+.card-body{
+    padding: 15px;
+}
+
+.card-body .price-mahakumbh{
+   color: #00bd68 !important;
+   font-weight: bold;
+   padding-bottom: 10px !important;
+}
+
+.card {
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.00);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-summary-mahakumbh {
+    position: fixed;
+    background-color: #065632 !important;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-top: 1px solid #ddd;
+    color: #fff;
+    font-size: 13px;
+}
+
+.checkout-mahakumbh{
+    cursor: pointer;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 1px groove;
+    border-color: #00bd68;
+    margin: 10px;
+   
+}
+
+.btn-group .btn {
+    min-width: 10px;
+    text-align: center;
+    color: #00bd68;
+}
+
+.text-center .btn-succes{
+    margin: 10px !important;
+    border: 1px solid red;
+}
+
+
+.header-banner {
+    position: relative;
+    overflow: hidden;
+}
+
+.small-images-container {
+    gap:100px !important;
+    top: 80% !important;
+    left: 50% !important;
+    width: 100%;
+    
+}
+
+.small-banner-image {
+    max-width: 250px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Ensures the images are nicely cropped */
+    transition: transform 0.3s ease-in-out; /* Adds a hover effect */
+}
+
+.small-banner-image:hover {
+    transform: scale(1.1); /* Zooms in slightly on hover */
+}
+
+/* Adjust small images for smaller screens */
+@media (max-width: 768px) {
+    .small-banner-image {
+        max-width: 80px;
+        max-height: 80px;
+    }
+}
+
+/* Adjust small images for extra-small screens */
+@media (max-width: 576px) {
+    .small-banner-image {
+        max-width: 60px;
+        max-height: 60px;
+    }
+    .small-images-container {
+        gap:20px !important;
+    }
+}

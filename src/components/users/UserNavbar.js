@@ -23,7 +23,7 @@ function UserNavbar() {
 
             <Link to={`/my-account/orders?lang=${language}`}>Orders</Link>
 
-            <Link to={`/my-account/account?lang=${language}`}>Account details</Link>
+            <Link to={`/my-account/profile?lang=${language}`}>Account details</Link>
 
             <Link to={`/my-account/password?lang=${language}`}>Change Password</Link>
 

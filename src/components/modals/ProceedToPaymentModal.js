@@ -11,7 +11,16 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
   const [showOrderSuccessModal, setOrderSuccessModal] = useState(false);
 
     const subTotalPrice = cartItems.reduce((acc, item) => {
-      return acc + (item.price * item.quantity);
+
+      if(item.type=='store'){
+          if(item.discount>0){
+            const discount = item.price - (item.price * item.discount) / 100;
+            return acc + (discount * item.quantity);
+          }
+        }
+          return acc + (item.price * item.quantity);
+        
+       
     }, 0); 
 
     const { settings, error } = useSettings(language);
@@ -58,6 +67,7 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
         },
         body: JSON.stringify({
           amount: TotalPrice, // Amount in INR, change as needed
+          //amount: 1,
           currency: 'INR',
         }),
       });
@@ -72,11 +82,11 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
       }
   
       const options = {
-        key: 'rzp_test_0O2ft9Vbycev5U', // Replace with your Razorpay Key ID
+        key: 'rzp_live_NeyDxswRdM95cX', // Replace with your Razorpay Key ID
         amount: data.admin.amount,
         currency: data.admin.currency,
         name: 'Satim',
-        description: 'Test Transaction',
+        description: 'satim payout products',
         image: 'http://www.thesatim.com/static/media/site_logo.132f8b7af655f73b8021.png', // Optional
         order_id: data.admin.id,// Order ID returned from the backend
        
@@ -135,6 +145,7 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
           cart_data: cartItems,
           GST: GST,
           SHIPPING: SHIPPING,
+          //TotalPrice: 1,
           TotalPrice: TotalPrice,
         }),
       });
@@ -186,6 +197,10 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
     if(serviceText=='store'){
       localStorage.removeItem("cartItems");
     }
+
+    if(serviceText=='mahakumbh'){
+      localStorage.removeItem("mahakumbh_cart");
+    }
       setOrderSuccessModal(true);
       handleClose();
   }
@@ -222,6 +237,16 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
               </thead>
               <tbody>
                 {cartItems.map((items, index) => {
+                  if(items.type=='store'){
+                    if(items.discount>0){
+                      var price = (items.price - (items.price * items.discount) / 100).toFixed(2);
+                    }else{
+                      var price = items.price;
+                    }
+                             
+                  }else{
+                    var price = items.price;
+                  }
                   let imageSrc = '';
                   try {
                     imageSrc = JSON.parse(items.images)[0];
@@ -243,10 +268,12 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
                           )}
                         </div>
                       </th>
-                      <td><p className="mb-0 mt-4">{items.title}</p></td>
-                      <td><p className="mb-0 mt-4">{t('price')}: {items.price}</p></td>
+                      <td><p className="mt-0" style={{width:"250px"}}>{items.title}</p></td>
+                      <td>
+                        <p className="mb-0 mt-4" style={{width:"70px"}}>{t('price')}: {price}</p>
+                      </td>
                       <td><p className="mb-0 mt-4">{items.quantity}</p></td>
-                      <td><p className="mb-0 mt-4">{t('price')}: {items.price * items.quantity}.00</p></td>
+                      <td><p className="mb-0 mt-4" style={{width:"90px"}}>{t('price')}: {price * items.quantity}.00</p></td>
                     </tr>
                   );
                 })}
@@ -300,22 +327,22 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
                 <h2 className="display-7 mb-4">{t('payment_summary')}</h2>
                 <div className="d-flex justify-content-between mb-4">
                   <p className="mb-0">Subtotal:</p>
-                  <p className="mb-0">{t('price')} {subTotalPrice.toFixed(2)}</p>
+                  <p className="mb-0" style={{width:"72px"}}>{t('price')} {subTotalPrice.toFixed(2)}</p>
                 </div>
           
                 <div className="d-flex justify-content-between mb-4">
                   <p className="mb-0">GST:</p>
-                  <p className="mb-0">{t('price')} {GST.toFixed(2)} %</p>
+                  <p className="mb-0" style={{width:"72px"}}>{t('price')} {GST.toFixed(2)}%</p>
                 </div>
 
                 <div className="d-flex justify-content-between mb-4">
                   <p className="mb-0">Shipping:</p>
-                  <p className="mb-0">{t('price')} {SHIPPING.toFixed(2)}</p>
+                  <p className="mb-0" style={{width:"72px"}}>{t('price')} {SHIPPING.toFixed(2)}</p>
                 </div>
 
                 <div className="d-flex justify-content-between py-3 border-top border-bottom">
                   <p className="mb-0">Total:</p>
-                  <p className="mb-0">{t('price')} {TotalPrice.toFixed(2)}</p>
+                  <p className="mb-0" style={{width:"72px"}}>{t('price')} {TotalPrice.toFixed(2)}</p>
                 </div>
                 <button onClick={handlePayment} className="payment_button btn border border-secondary rounded-pill px-5 text-primary" type="button">
                 {t('proceed_to_payment')}

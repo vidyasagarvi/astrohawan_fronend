@@ -12,6 +12,7 @@ import RefundReplacementPolicy from './components/staticPages/RefundReplacementP
 
 import Auction from './components/Auction';
 import ContactUs from './components/ContactUs.js';
+import Mahakumbh from './components/mahakumbh/Mahakumbh.js';
 import NavBar from './components/navbar/NavBar';
 import Hero from './components/hero/Hero';
 import Footer from './components/Footer';
@@ -37,6 +38,8 @@ import UserLayout from './components/users/UserLayout.js';
 import UserDashboard from './components/users/UserDashboard.js';
 import UpdatePassword from './components/users/UpdatePassword.js';
 import UsersOrders from './components/users/Orders.js';
+import AccountDetails from './components/users/AccountDetails.js'
+
 
 import PujaStoreDetails from './components/pujaStore/PujaStoreDetails'
 import MandirDetails from './components/mandir/MandirDetails'
@@ -93,6 +96,8 @@ const App = () => {
         <Route path="/helps" element={<Helps />} />
         <Route path="/auction" element={<Auction />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/makakumbh" element={<Mahakumbh />} />
+        
         <Route path="/about-us" element={<About />} />
         <Route path="/terms-conditions" element={<TermsCondition />} />
         <Route path="/privacy-policy" element={<PrivacyPpolicy />} />
@@ -127,6 +132,9 @@ const App = () => {
       <Route path="/my-account" element={<UserRoute><UserLayout><UserDashboard /></UserLayout></UserRoute>} />
       <Route path="/my-account/password" element={<UserRoute><UserLayout><UpdatePassword /></UserLayout></UserRoute>} />
       <Route path="/my-account/orders" element={<UserRoute><UserLayout><UsersOrders /></UserLayout></UserRoute>} />
+      <Route path="/my-account/profile" element={<UserRoute><UserLayout><AccountDetails /></UserLayout></UserRoute>} />
+
+      
 
       </Routes>
 

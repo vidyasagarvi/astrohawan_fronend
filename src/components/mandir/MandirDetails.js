@@ -8,6 +8,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import CommonCart from '../CommonCart';
 import mandirIcon from '../../assets/hindu-temple-svgrepo-com.svg';
+import Disclamer from '../Disclamer.js';
 
 
 function MandirDetails() {
@@ -335,7 +336,10 @@ function MandirDetails() {
                                                             <li key={index}>{benefit.description}</li>
                                                         ))}
                                                     </ul>
+                                                  
                                                 </div>
+                                                <h2>Disclamer</h2>
+                                                {<Disclamer  />}
                                             </div>
                                             <p></p>
 
@@ -372,7 +376,15 @@ function MandirDetails() {
 
                                                                 <div className='mandir-content'>
                                                                     <h3>{product.title}</h3>
-                                                                    <p><strong>Price / Unit:</strong> {product.price}</p>
+
+                                                                    <p><strong>Price :</strong> {product.price}  {product.price_description} </p>
+
+                                                                   {/*product.person > 1 ? (
+                                                                    <p><strong>Price :</strong> {product.price} for {product.person} person</p>
+                                                                    ) : (
+                                                                        <p><strong>Price :</strong> {product.price} per  person</p>
+                                                                    )*/}
+
                                                                     <p> {truncateText(product.description, 150)}</p>
                                                                 </div>
                                                             </div>

@@ -184,6 +184,10 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
               <Link to={`/pooja-store?lang=${language}`} className={`nav-item nav-link ${isActive('/pooja-store') ? 'active' : ''}`} onClick={closeMenu}>
                 {t('mypooja_store')}
               </Link>
+
+              <Link to={`/makakumbh?lang=${language}`} className={`nav-item nav-link ${isActive('/makakumbh') ? 'active' : ''}`} onClick={closeMenu}>
+                {t('makakumbh')}
+              </Link>
            
              {/* <Link to={`/helps?lang=${language}`} className={`nav-item nav-link ${isActive('/helps') ? 'active' : ''}`} onClick={closeMenu}>{t('helpto_needy')} </Link> */ }
               
