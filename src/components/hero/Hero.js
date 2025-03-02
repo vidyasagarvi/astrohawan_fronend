@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import banner_1 from '../../assets/mahakumbh.png';
+import banner_1 from '../../assets/banner_2.jpeg';
 import banner_2 from '../../assets/banner_2.jpeg';
 import HomePage from '../HomePage';
 
@@ -16,11 +16,14 @@ function Home() {
             
             {/* Carousel inner items */}
             <div className="carousel-inner" role="listbox">
+            
             <Link to={`/makakumbh?lang=${language}`}> <div className="carousel-item active">
              <img src={banner_1} className="img-fluid w-100 h-100 bg-secondary" alt="Puja Store" />
              
               </div>
               </Link>
+              
+              
               <div className="carousel-item">
                 <img src={banner_2} className="img-fluid w-100 h-100" alt="Puja Store" />
               </div>

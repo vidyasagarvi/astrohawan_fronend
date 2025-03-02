@@ -1,5 +1,6 @@
 const Config = {
-    apiUrl: 'http://localhost:3000/',
+    apiUrl: 'http://localhost:3000/', //local
+    //apiUrl: 'https://www.thesatim.com/api/', //Live
     endpoints: {
       pujastore: 'api/pujastore',
       pujastoreAdmin: 'api/pujastore/admin/store',

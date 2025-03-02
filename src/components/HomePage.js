@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import { useTranslation } from 'react-i18next';
-import MandirList from './mandir/MandirList.js';
-const Process = React.lazy(() => import('./Process.js'));
+const ServicesList = React.lazy(() => import('./services/ServicesList.js'));
+const HawansList = React.lazy(() => import('./hawans/HawansList.js'));
 const Testimonials = React.lazy(() => import('./Testimonials.js'));
 function HomePage() {
 
@@ -16,12 +16,16 @@ function HomePage() {
             <p>{t('home_page_content')}</p>
        
             </div>
-            <h2 className='mandir-title'>{t('home_page_temple_title')}</h2>
-           
-            <MandirList />
+            <h2 className='mandir-title'>{t('home_page_service_title')}</h2>
+  
+            <Suspense fallback={<div>Loading Process Details...</div>}>
+            <ServicesList lang={language} />
+            </Suspense>
+
+            <h2 className='mandir-title'>{t('hawan_title')}</h2>
            
             <Suspense fallback={<div>Loading Process Details...</div>}>
-            <Process lang={language} />
+            <HawansList lang={language} />
             </Suspense>
 
             <Suspense fallback={<div>Loading Process Details...</div>}>

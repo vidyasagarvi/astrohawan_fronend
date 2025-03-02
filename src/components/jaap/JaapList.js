@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Config from '../../config/Config'; // Adjust the import according to your project structure
-import '../../css/MandirList.css'; // Create and import the CSS file for styling
+import '../../css/Services_List.css'; // Create and import the CSS file for styling
 import { useTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import mandirIcon from '../../assets/hindu-temple-svgrepo-com.svg';
 
 
-function MandirList() {
+function JaapList() {
     const [mandirs, setMandirs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -40,7 +39,7 @@ function MandirList() {
     useEffect(() => {
         const fetchMandirs = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/mandir/getall?lang=${language}`); // Adjust the endpoint URL
+                const response = await fetch(`${Config.apiUrl}api/jaap/getall?lang=${language}`); // Adjust the endpoint URL
                 const data = await response.json();
 
                 if (response.ok) {
@@ -100,9 +99,6 @@ function MandirList() {
                         </div>
 
                         <h3>{mandir.translations.name}</h3>
-                        <span className='mandir-icon'><img src={mandirIcon} alt="Mandir place" ></img></span>
-                        <p className='mandir-discription'>{mandir.translations.place}</p>
-                        {/* <p>{truncateText(mandir.translations.description, 100)}</p> */}
                     </Link>
 
                  
@@ -121,4 +117,4 @@ function MandirList() {
     );
 }
 
-export default MandirList;
+export default JaapList;

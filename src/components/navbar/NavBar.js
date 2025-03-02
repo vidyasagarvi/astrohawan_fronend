@@ -181,20 +181,22 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
               <Link to={`/services?lang=${language}`} className={`nav-item nav-link ${isActive('/services') ? 'active' : ''}`} onClick={closeMenu}>
                 {t('services_offered')}
               </Link>
-              <Link to={`/pooja-store?lang=${language}`} className={`nav-item nav-link ${isActive('/pooja-store') ? 'active' : ''}`} onClick={closeMenu}>
-                {t('mypooja_store')}
+              <Link to={`/hawans?lang=${language}`} className={`nav-item nav-link ${isActive('/hawans') ? 'active' : ''}`} onClick={closeMenu}>
+                {t('hawans_menu')}
               </Link>
 
-              <Link to={`/makakumbh?lang=${language}`} className={`nav-item nav-link ${isActive('/makakumbh') ? 'active' : ''}`} onClick={closeMenu}>
-                {t('makakumbh')}
+              <Link to={`/yantra?lang=${language}`} className={`nav-item nav-link ${isActive('/yantra') ? 'active' : ''}`} onClick={closeMenu}>
+                {t('yantra_menu')}
               </Link>
-           
-             {/* <Link to={`/helps?lang=${language}`} className={`nav-item nav-link ${isActive('/helps') ? 'active' : ''}`} onClick={closeMenu}>{t('helpto_needy')} </Link> */ }
-              
-          
-             {/* <Link to={`/auction?lang=${language}`} className={`nav-item nav-link ${isActive('/auction') ? 'active' : ''}`} onClick={closeMenu}>
-                {t('auction')}
-              </Link> */}
+
+              <Link to={`/raksha-kit?lang=${language}`} className={`nav-item nav-link ${isActive('/raksha-kit') ? 'active' : ''}`} onClick={closeMenu}>
+                {t('raksha_kit_menu')}
+              </Link>
+
+              <Link to={`/jaap?lang=${language}`} className={`nav-item nav-link ${isActive('/jaap') ? 'active' : ''}`} onClick={closeMenu}>
+                {t('jaap_menu')}
+              </Link>
+
               <Link to={`/contact-us?lang=${language}`} className={`nav-item nav-link ${isActive('/contact-us') ? 'active' : ''}`} onClick={closeMenu}>
                 {t('contact_menu')}
               </Link>

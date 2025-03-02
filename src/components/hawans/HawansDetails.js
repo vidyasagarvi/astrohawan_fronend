@@ -2,11 +2,11 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Config from '../../config/Config';
+import Config from '../../config/Config.js';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
-import CommonCart from '../CommonCart';
+import CommonCart from '../CommonCart.js';
 import mandirIcon from '../../assets/hindu-temple-svgrepo-com.svg';
 import Disclamer from '../Disclamer.js';
 
@@ -210,6 +210,22 @@ function MandirDetails() {
     const handleCloseModal = () => setShowModal(false);
 
 
+    const CartSummary = ({ cart }) => {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+        return (
+            <div className="cart-summary-mahakumbh fixed-bottom p-3 shadow">
+                <div className="container d-flex justify-content-between align-items-center">
+                    <span>{totalItems} item(s) in the cart</span>
+                    <span>Total: ₹{totalPrice}</span>
+                    <span className="checkout-mahakumbh">Next</span>
+                </div>
+            </div>
+        );
+    };
+
+
     const totalPrice = cart.reduce((total, item) => total + item.totalPrice, 0);
 
     if (loading) {
@@ -264,7 +280,7 @@ function MandirDetails() {
                 <div className="container-fluid py-4 mt-2">
                     <div className="container py-0">
                         <div className="row g-4 mb-5">
-                            <div className="col-lg-8 col-xl-9">
+                           
                                 <div className="row g-4">
                                     <div className="col-lg-6">
                                         <div className="border rounded">
@@ -401,7 +417,7 @@ function MandirDetails() {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                           
                         </div>
                         
                         <h2 className="mandir-title">Related Mandir</h2>
@@ -438,6 +454,8 @@ function MandirDetails() {
                 </div>
                 {/* Fixed Cart Section */}
                 <CommonCart cart={cart} isMobile={isMobile} addToCart={addToCart} removeFromCart={removeFromCart} />
+
+                {cart.length > 0 && <CartSummary cart={cart} />}
 
 
                 {/* Modal for showing the full description */}

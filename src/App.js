@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import Pujas from './components/Pujas';
 import ServicesOffered from './components/ServicesOffered';
 import PoojaStore from './components/PoojaStore';
-import Helps from './components/Helps';
 import About from './components/staticPages/About'
 import TermsCondition from './components/staticPages/TermsCondition'
 import PrivacyPpolicy from './components/staticPages/PrivacyPpolicy'
@@ -13,6 +12,10 @@ import RefundReplacementPolicy from './components/staticPages/RefundReplacementP
 import Auction from './components/Auction';
 import ContactUs from './components/ContactUs.js';
 import Mahakumbh from './components/mahakumbh/Mahakumbh.js';
+import Hawans from './components/Hawans.js';
+import Yantra from './components/Yantra.js';
+import RakshaKit from './components/RakshaKit.js';
+import Jaap from './components/Jaap.js'
 import NavBar from './components/navbar/NavBar';
 import Hero from './components/hero/Hero';
 import Footer from './components/Footer';
@@ -42,8 +45,7 @@ import AccountDetails from './components/users/AccountDetails.js'
 
 
 import PujaStoreDetails from './components/pujaStore/PujaStoreDetails'
-import MandirDetails from './components/mandir/MandirDetails'
-import HelpsDetails from './components/helps/HelpsDetails'
+import ServicesDetails from './components/services/ServicesDetails.js'
 import ServiceDetails from './components/ourServices/ServiceDetails'
 
 import { useTranslation } from 'react-i18next';
@@ -93,11 +95,15 @@ const App = () => {
             <Pujas setIsDrawerOpen={setIsDrawerOpen} productsByCategory={productsByCategory} />
           </>
         } />
-        <Route path="/helps" element={<Helps />} />
+
         <Route path="/auction" element={<Auction />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/makakumbh" element={<Mahakumbh />} />
-        
+        <Route path="/hawans" element={<Hawans />} />
+        <Route path="/yantra" element={<Yantra />} />
+        <Route path="/raksha-kit" element={<RakshaKit />} />
+        <Route path="/jaap" element={<Jaap />} />
+       
         <Route path="/about-us" element={<About />} />
         <Route path="/terms-conditions" element={<TermsCondition />} />
         <Route path="/privacy-policy" element={<PrivacyPpolicy />} />
@@ -112,8 +118,8 @@ const App = () => {
         <Route path="/pooja-store/:productId" element={<PujaStoreDetails setIsDrawerOpen={setIsDrawerOpen} />} />
         
         {/* Single Mandir details */}
-        <Route path="/mandir/:mandirId" element={<MandirDetails />} />
-        <Route path="/helps/:helpsId" element={<HelpsDetails />} />
+        <Route path="/services/:serviceId" element={<ServicesDetails />} />
+   
 
         {/* Single Service Details */}
         <Route path="/service/:serviceId" element={<ServiceDetails />} />
