@@ -1,0 +1,364 @@
+/* Related Items Section */
+.related-items-container {
+    background: #fff3f3; /* Light background */
+    padding: 40px 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Heading */
+.related-items-container h2 {
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Cards */
+.realted-item-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 250px; /* Smaller card size */
+    margin: auto;
+}
+
+/* Images */
+.realted-item-images img {
+    width: 100%;
+    height: 140px; /* Smaller images */
+    object-fit: fill;
+    border-radius: 6px;
+}
+
+.realted-item-images img:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Product Name */
+.fw-bold {
+    font-size: 16px;
+    color: #222;
+}
+
+/* Price */
+.color-darkpink {
+    color: #e74c3c;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Add to Cart Button */
+.payment_button {
+    background: transparent;
+    border: 2px solid #e74c3c;
+    color: #e74c3c;
+    font-size: 14px;
+    padding: 6px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.payment_button:hover {
+    background: #e74c3c;
+    color: #fff;
+}
+
+/* Custom Slider Arrows */
+.slick-prev,
+.slick-next {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Arrows on Hover */
+.slick-prev:hover,
+.slick-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+   background-color: none !important;
+}
+
+/* Move Arrows Outside */
+.slick-prev {
+    left: -40px;
+}
+
+.slick-next {
+    right: -40px;
+}
+
+
+/*detail page design */
+
+.puja-card {
+    display: flex;
+    gap: 2px;
+    max-width: 550px;
+    margin: auto;
+    border: none !important;
+}
+
+/* Left side - Image */
+.puja-image img {
+    width: 100%;
+    border-radius: 30px !important;
+    max-width: 520px;
+    max-height: 470px;
+}
+
+/* Right side - Details */
+.puja-details {
+    flex: 1;
+}
+
+.puja-title {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.puja-rating {
+    font-size: 18px;
+    color: #ff9800;
+}
+
+.stars {
+    color: gold;
+}
+
+/* Puja Type (Laghu / Maha) */
+.puja-type {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.type-btn {
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.type-btn.active {
+    border: 2px solid red;
+    color: red;
+}
+
+
+
+/* Price Section */
+.puja-price {
+    font-size: 24px;
+    margin-top: 20px;
+    font-weight: 700!important;
+    color: #BA0000;
+}
+
+.advance-payment {
+    font-size: 14px;
+     color: #000 !important; 
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+/* Buttons */
+.puja-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.add-to-cart {
+    border: 2px solid red;
+    background: white;
+    color: red;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40%;
+}
+
+.book-puja {
+    background: #ffcc00;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 40%;
+}
+
+/* Features List */
+
+.puja-features {
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+    font-size: 14px;
+    line-height: 2.2;
+
+}
+
+.puja-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between image and text */
+    margin: 8px 0;
+}
+
+.puja-features img {
+    width: 24px; /* Adjust the size of the images */
+    height: 24px;
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+    .puja-details h2{
+        font-size: 24px !important;
+    }
+
+    .puja-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .puja-buttons button {
+        width: 100%;
+    }
+
+    .puja-image img {
+        max-width: 100%;
+    }
+}
+
+
+
+
+
+
+/* 🔹 Description Container */
+.detail-description {
+    background: #fff3f3; /* Light grey background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* 🏷️ Styled Heading (h2) */
+.detail-description h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e74c3c; /* Elegant red */
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #e74c3c; /* Underline effect */
+    display: inline-block;
+}
+
+/* 📜 Paragraph Styling (p) */
+.detail-description p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* 🔢 Ordered List (ol) */
+.detail-description ol {
+    counter-reset: list-counter;
+    list-style: none;
+    padding-left: 0;
+}
+
+.detail-description ol li {
+    counter-increment: list-counter;
+    padding: 5px 10px;
+    margin: 8px 0;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.detail-description ol li::before {
+    content: counter(list-counter) ".";
+    color: #e67e22; /* Orange number */
+    margin-right: 12px;
+}
+
+/* 🔹 Unordered List (ul) */
+.detail-description ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.detail-description ul li {
+    padding: 5px 10px;
+    margin: 8px 0;
+    font-size: 14px;
+    font-weight: 500;
+   
+}
+
+.detail-description ul li::before {
+    content: "✔";
+    font-size: 14px;
+    font-weight: bold;
+    color: #27ae60; /* Green check icon */
+    margin-right: 12px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .realted-item-card {
+        max-width: 230px;
+        padding: 10px;
+    }
+
+    .realted-item-images img {
+        height: 120px;
+    }
+
+    .fw-bold {
+        font-size: 14px;
+    }
+
+    .color-darkpink {
+        font-size: 12px;
+    }
+
+    .payment_button {
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+
+    /* Adjust Arrow Position */
+    .slick-prev {
+        left: -30px;
+    }
+
+    .slick-next {
+        right: -30px;
+    }
+}

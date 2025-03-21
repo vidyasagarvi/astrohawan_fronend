@@ -22,12 +22,36 @@
     padding: 10px 0px 0px 0px !important;
 }
 
+.checkout-mahakumbh {
+    display: inline-block;
+    padding: 6px 13px;
+    background: linear-gradient(135deg, #ff9800, #ff5722); /* Beautiful gradient */
+    color: white;
+    font-size: 13px !important;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .checkout-mahakumbh:hover {
+    background: linear-gradient(135deg, #ff5722, #ff9800); /* Reverse gradient on hover */
+    transform: scale(1.05);
+  }
+  
+  .checkout-mahakumbh:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
 .card-body{
     padding: 15px;
 }
 
 .card-body .price-mahakumbh{
-   color: #00bd68 !important;
+   color: #5B1D06 !important;
    font-weight: bold;
    padding-bottom: 10px !important;
 }
@@ -40,12 +64,11 @@
 
 .cart-summary-mahakumbh {
     position: fixed;
-    background-color: #065632 !important;
+    background-color: #944E16 !important;
     bottom: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    border-top: 1px solid #ddd;
     color: #fff;
     font-size: 13px;
 }

@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Tab, Nav } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useCart } from '../../context/CartContext';
 import Config from '../../config/Config';
 import delete_cart from '../../assets/delete-cart.png';
 import '../../css/CheckoutModal.css';
 
 const CheckoutModal = ({ show, handleClose, totalQuantity, productsByCategory, handleNextStep }) => {
     const { t } = useTranslation();
-    const { state, dispatch } = useCart();
-    const { cartItems } = state;
     const [phoneNumber, setPhoneNumber] = useState('');
     const [otp, setOtp] = useState('');
     const [name, setName] = useState('');

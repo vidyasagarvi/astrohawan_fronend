@@ -33,7 +33,6 @@ const ParentComponent = () => {
       isOpen={true}
       onClose={() => {}}
       cartItems={cartItems}
-      productsByCategory={productsByCategory}
       handleRemoveItem={handleRemoveItem}
       handleUpdateQuantity={handleUpdateQuantity}
     />

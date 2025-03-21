@@ -470,10 +470,19 @@ color: #E12D3A;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top: 100px !important;
-    background-color: #5B1D06;
 }
 
+
+h2.heading::after, h2.heading_2::after {
+  content: "";
+  width: 50px;
+  height: 4px;
+  background: #ee4e5e;
+  position: relative;
+  display: block;
+  margin: 0px auto;
+  margin-bottom: 0;
+}
 
 @media (min-width: 992px) {
     .hero-header {
@@ -490,13 +499,13 @@ color: #E12D3A;
 
 @media (min-width: 992px) {
     .page-header {
-        margin-top: 80px !important;
+        margin-top: 100px !important;
     }
 }
 
 @media (max-width: 992px) {
     .page-header {
-        margin-top: 80px !important;
+        margin-top: 100px !important;
     }
 }
 
@@ -517,11 +526,12 @@ color: #E12D3A;
 
 .payment_button {
   width: 100% !important;
-  border-radius: 12px !important;
-  background-color: #5B1D06 !important;
-  color: #ffffff  !important;
+  border-radius: 19px !important;
+  background-color: #FFD700 !important;
+  color: #000  !important;
   margin-top: 5%;
   margin-left: 0%;
+  font-size: 12px;
   border:none !important;
 }
 
@@ -726,17 +736,44 @@ color: #E12D3A;
 }
 
 .total-price {
-    position: sticky; /* Change to sticky */
-    bottom:0; /* Adjust as needed */
-    width: calc(100%); /* Adjust to leave space on sides */
-    height: 35px;
-    text-align: center;
-    background-color: #5B1D06;
-    padding: 10px;
-    color: #fff;
-    margin-top: 4%;
+  position: sticky;
+  bottom: 0;
+  width: calc(100%);
+  height: 41px;
+  text-align: center;
+  background-color: #5B1D06;
+  padding: 9px 6px 0px 5px;
+  color: #fff;
+  margin-top: 5%;
+  font-size: 16px;
+  border-radius: 4px;
    
   }
+
+  .pricing-line {
+    font-size: 14px; /* Small font size */
+    font-weight: 500; /* Medium weight for readability */
+    text-align: center;
+    color: #333; /* Dark gray for good contrast */
+  }
+  
+  .national-price {
+    color: #ff9800; /* Orange for INR */
+  }
+  
+  .international-price {
+    color: #007bff; /* Blue for USD */
+  }
+  
+  .on-call {
+    font-weight: bold;
+    color: red;
+  }
+  
+  .separator {
+    color: #aaa; /* Light gray for subtle separation */
+  }
+  
   
   .total-price p {
     text-align: right;
@@ -1132,12 +1169,14 @@ color: #E12D3A;
 .nav.nav-tabs .nav-link.active {
     border-bottom: 2px solid var(--bs-secondary) !important;
 }
-    
+
+.home_pagetitle p{
+  text-align: center;
+}
 
 .home_pagetitle  h1{
     text-align: center !important;
 }
-   
 
 .nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active {
@@ -1387,7 +1426,7 @@ cursor: pointer;
     color: #F0521D;
     background: #fff;
     border-radius: 3px;
-    margin: 1.5rem 0rem 0rem 2rem;
+    margin: 0.5rem 0rem 0rem 0rem;
   }  
 
   .single_add_to_cart_button:hover{

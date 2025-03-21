@@ -1,0 +1,268 @@
+/* Global Styling */
+.cart-summary-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Responsive Grid Layout */
+.cart-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Card Styling */
+.card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Input Fields */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Price Summary */
+.price-breakdown p {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.text-red {
+  color: red;
+}
+
+/* Pay Now Button */
+.pay-now-btn {
+  width: 100%;
+  background: #ffcc00;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pay-now-btn:hover {
+  background: #e6b800;
+}
+
+/* Cart Items */
+.cart-items {
+  margin-top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+
+.item-name {
+  font-weight: bold;
+}
+
+.item-type {
+  color: #666;
+}
+
+.item-price {
+  color: red;
+  font-weight: bold;
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+  /* Adds spacing between fields */
+}
+
+.input-field {
+  flex: 1;
+  /* Ensures both inputs take equal space */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.textarea-field {
+  height: 100px;
+  /* Adjust height as needed */
+  resize: vertical;
+}
+
+
+.gender-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+}
+
+.gender-container label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-items {
+  width: 100%;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.item-details {
+  flex-grow: 1;
+  margin: 0% 0% 0% 30% !important;
+}
+
+.item-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.item-price {
+  font-size: 14px;
+  color: #444;
+}
+
+.delete-btn {
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  background: none;
+}
+
+.delete-btn img {
+  width: 25px;
+  height: 20px;
+}
+
+.item-image {
+  float: left;
+  width: 100px;
+  height: 90px;
+  border: 1px solid;
+  padding: 2px;
+  border-radius: 9px;
+}
+
+.input-row .error {
+  color: red;
+  font-size: 12px;
+  margin: -8px 0px 4px 0px;
+  padding: 0px 0px 0px 3px;
+}
+/* ===== RESPONSIVENESS ===== */
+@media screen and (max-width: 768px) {
+
+  /* Stack sections vertically */
+  .cart-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  /* Reduce padding */
+  .card {
+    padding: 15px;
+  }
+
+
+
+  /* Adjust button size */
+  .pay-now-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  /* Reduce container width */
+  .cart-summary-container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Adjust text size */
+  .section-title {
+    font-size: 16px;
+  }
+
+  .input-field {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* Reduce image size */
+  .item-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Reduce button size */
+  .pay-now-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

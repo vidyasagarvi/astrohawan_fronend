@@ -1,0 +1,138 @@
+.rakshakit-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+}
+
+.rakshakit-card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1100px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Left: Image Section */
+.rakshakit-image-section {
+    flex: 3;
+    max-width: 50%;
+    position: relative;
+}
+
+.rakshakit-image-section img {
+    width: 100%;
+    height: 450px; /* Increased height */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Custom Slider Arrows */
+.slick-prev,
+.slick-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.slick-prev {
+    left: 10px;
+}
+
+.slick-next {
+    right: 10px;
+}
+
+/* Right: Description Section */
+.rakshakit-info-section {
+    flex: 2;
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content from top */
+    padding: 10px;
+}
+
+/* Ensure title, description, and Add to Cart are properly spaced */
+.rakshakit-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.rakshakit-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e67e22;
+    margin-bottom: 10px;
+}
+
+.rakshakit-add-to-cart {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease-in-out;
+    margin-bottom: 15px;
+}
+
+.rakshakit-add-to-cart:hover {
+    background: #c0392b;
+}
+
+.rakshakit-description {
+    font-size: 17px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .rakshakit-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rakshakit-image-section {
+        max-width: 100%;
+    }
+
+    .rakshakit-info-section {
+        max-width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+
+    .slick-prev {
+        left: 5px;
+    }
+
+    .slick-next {
+        right: 5px;
+    }
+}

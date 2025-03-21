@@ -1,0 +1,22 @@
+.phone-input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    width: 300px;
+    background: #fff;
+  }
+  
+  .country-dropdown {
+    flex: 0 0 auto;
+  }
+  
+  .mobile-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding-left: 8px;
+    font-size: 16px;
+  }
+  

@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Config from '../config/Config';
 import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
 
 const Pujas = ({setIsDrawerOpen, productsByCategory }) => {
   const { t } = useTranslation();

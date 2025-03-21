@@ -4,13 +4,15 @@ import React from 'react';
 const Disclamer = () => {
   return (
     <div>
-        <p>This is a spiritual and religious event intended solely for devotional purposes. The rituals and practices performed during the event are based on traditional beliefs and customs.
-        </p>
-        <p>We do not guarantee any specific outcomes related to personal relationships, business success, or any other aspect of life. Individual experiences may vary, and participation in the event is entirely voluntary and based on your own discretion. Joining this event is your personal responsibility, and no one is compelled or forced to participate.
-        </p>
-        <p>This event is not a substitute for professional advice or services, such as medical, psychological, legal, or financial consultation. Participants are encouraged to seek professional assistance if required.
-        </p>
-        <p>The organizers are not responsible for any interpretations, decisions, or actions taken based on participation in the event. By attending, participants acknowledge and agree to these terms.</p>
+       <ol>
+        <li><strong>No Guaranteed Results:</strong>Astrology, hawans, and yantras are spiritual practices. Results may vary based on individual karma and divine will.
+        </li>
+        <li><strong>Not a Substitute for Professional Advice:</strong>Our services are for spiritual guidance and should not replace medical, legal, or financial advice.</li>
+        <li><strong>Service Availability:</strong>We strive to offer uninterrupted services but do not guarantee 100% uptime due to external factors.
+        </li>
+        <li><strong>Limitation of Liability:</strong>AstroHawan is not responsible for any direct, indirect, incidental, or consequential damages arising from service use</li>
+      <li><strong>Third-Party Links:</strong> Our platform may contain external links. We do not endorse or take responsibility for third-party content.</li>
+       </ol>
     </div>
   );
 };

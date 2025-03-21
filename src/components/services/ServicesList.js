@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../../css/ServicesList.css'; // Create and import the CSS file for styling
 import Config from '../../config/Config'; // Adjust the import according to your project structure
-import '../../css/Services_List.css'; // Create and import the CSS file for styling
 import { useTranslation } from 'react-i18next';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-
-function MandirList() {
-    const [mandirs, setMandirs] = useState([]);
+function ServicesList() {
+    const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { t } = useTranslation();
@@ -18,56 +14,26 @@ function MandirList() {
     const searchParams = new URLSearchParams(location.search);
     const language = searchParams.get('lang') || 'en';
 
-    const NextArrow = ({ onClick }) => {
-        return (
-            <div className="next-arrow" onClick={onClick}>
-                <span style={{ fontSize: '24px', color: 'white' }}>{'>'}</span>
-            </div>
-        );
-    };
-
-    const PrevArrow = ({ onClick }) => {
-        return (
-            <div className="prev-arrow" onClick={onClick}>
-                <span style={{ fontSize: '24px', color: 'white' }}>{'<'}</span>
-            </div>
-        );
-    };
-
-
-
     useEffect(() => {
-        const fetchMandirs = async () => {
+        const fetchServices = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/services/getall?lang=${language}`); // Adjust the endpoint URL
+                const response = await fetch(`${Config.apiUrl}api/services/getall?lang=${language}`);
                 const data = await response.json();
 
                 if (response.ok) {
-                    setMandirs(data);
+                    setServices(data);
                 } else {
                     setError(data.message);
                 }
             } catch (err) {
-                setError('Error fetching mandirs');
+                setError('Error fetching Hawans');
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchMandirs();
+        fetchServices();
     }, [language]);
-
-    const sliderSettings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        fade: true,
-        nextArrow: <NextArrow />,  // Custom Next Arrow
-        prevArrow: <PrevArrow />   // Custom Prev Arrow
-    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -77,44 +43,38 @@ function MandirList() {
         return <div>{error}</div>;
     }
 
-
     return (
-  
-        <div className="mandir-list">
 
-            {mandirs.map((mandir) => (
-                <div>
-           
-                <div key={mandir.id} className="mandir-card">
-                    <Link to={`/mandir/${mandir.id}?lang=${language}`}>
+        <div className="services-container">
 
-                        <div className="mandir-images">
-                            <Slider {...sliderSettings}>
-                                {mandir.images.map((image, index) => (
-                                    <div key={index}>
-                                        <img src={`${Config.apiUrl}${image}`} alt="Services" style={{ height: '200px' }} />
-                                    </div>
-                                ))}
-                            </Slider>
-                        </div>
+            {services.map((service) => (
+                <div key={service.id} className="service-card">
+                        <Link to={`/service/${service.id}?lang=${language}`}>
+                         <div className="service-images">
+                                <img src={`${Config.apiUrl}${service.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
+                            </div>
+                            <div className='text-center mt-2'>
+                                <p className="fw-bold mb-0 text-black">{service.translations.name}</p>
+                            </div>
 
-                        <h3>{mandir.translations.name}</h3>
-                    </Link>
+                            <div class="text-center mt-1">
+                                <p class="color-darkpink  mb-0">
+                                    ₹5100 - $150
+                                </p>
+                            </div>
+                        </Link>
 
-                 
-                </div>
-                <div className="card-body">
-                        <Link to={`/mandir/${mandir.id}?lang=${language}`}>
-                            <h3 className="card-title btn btn-primary add-tocard">PARTICIPATE</h3></Link>
+                    <div className="text-center">
+                        <button className="payment_button btn border border-secondary rounded-pill px-5 text-primary">Add to Cart</button>
                     </div>
 
                 </div>
-               
+
             ))}
 
         </div>
-   
+
     );
 }
 
-export default MandirList;
+export default ServicesList;

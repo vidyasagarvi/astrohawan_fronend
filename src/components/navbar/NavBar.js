@@ -1,8 +1,8 @@
-import React, { useState , useRef } from 'react';
+import React, {useContext, useState , useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import LanguageSelector from '../LanguageSelector.js';
+import { CartContext } from "../../context/CartContext.js";
 import { useTranslation } from 'react-i18next';
-import { useCart } from '../../context/CartContext';
 import LoginModal from '../modals/LoginModal.js';
 import ForgotPasswordModal from '../modals/ForgotPasswordModal';
 import SignUpModal from '../modals/SignUpModal';
@@ -13,8 +13,7 @@ import site_logo from '../../assets/site_logo.png';
 
 function NavBar({ totalQuantity, setIsDrawerOpen }) {
   const { t } = useTranslation();
-  const { state } = useCart();
-  const { cartItems } = state;
+  const { cart } = useContext(CartContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
@@ -26,6 +25,7 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
   const location = useLocation(); // To get the current location
   const navbarCollapseRef = useRef(null);
 
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const searchParams = new URLSearchParams(location.search);
   const language = searchParams.get('lang') || 'en';
@@ -43,8 +43,8 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
 
   const handleLoginUser = (event) => {
     event.preventDefault();
-    const token = localStorage.getItem('token');
-    if (token) {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (userData) {
       setShowUserMenu(!showUserMenu); // Toggle the user menu visibility
     } else {
       setShowLoginModal(true);
@@ -56,7 +56,7 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
     setShowUserMenu(false);
     navigate('/');
   };
@@ -144,7 +144,7 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
                   className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
                   style={{ top: '-22px', left: '17px', height: '20px', minWidth: '19px' }}
                 >
-                  {totalQuantity}
+                  {totalItems}
                 </span>
               </a>
             </div>
@@ -193,7 +193,7 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
                 {t('raksha_kit_menu')}
               </Link>
 
-              <Link to={`/jaap?lang=${language}`} className={`nav-item nav-link ${isActive('/jaap') ? 'active' : ''}`} onClick={closeMenu}>
+              <Link to={`/jaaps?lang=${language}`} className={`nav-item nav-link ${isActive('/jaaps') ? 'active' : ''}`} onClick={closeMenu}>
                 {t('jaap_menu')}
               </Link>
 

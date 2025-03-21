@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import Config from '../../config/Config';
-import { useCart } from '../../context/CartContext';
 import { useTranslation } from 'react-i18next';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
