@@ -3,14 +3,14 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Config from '../../config/Config';
 import axios from 'axios';
+import countryCodes from "./countryCodes";
+import "./PhoneInput.css"; // Custom styles
 
 const SignUpModal = ({ show, handleClose, handleShowVerifyOtp, handleShowForgotPassword, handleLoginUser }) => {
   const { t } = useTranslation();
   const [name, setName] = useState('');
   const [mobile_no, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [shipping_address, setAddress] = useState('');
-  const [pincode, setPincode] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -40,15 +40,7 @@ const SignUpModal = ({ show, handleClose, handleShowVerifyOtp, handleShowForgotP
       newErrors.password = t('password_required');
     }
 
-    if (!shipping_address) {
-      newErrors.shipping_address = t('shipping_address_placeholder');
-    }
-
-    if (!pincode) {
-      newErrors.pincode = t('pincode_placeholder');
-    }
-
-
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; // Returns true if no errors
   };
@@ -131,34 +123,6 @@ const SignUpModal = ({ show, handleClose, handleShowVerifyOtp, handleShowForgotP
             {errors.password && <Form.Text className="text-danger">{errors.password}</Form.Text>}
           </Form.Group>
 
-
-
-          <Form.Group controlId="formAddress">
-            <Form.Label>{t('shipping_address_title')}</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={5}
-              cols={10}
-              placeholder={t('shipping_address_placeholder')}
-              value={shipping_address}
-              onChange={(e) => setAddress(e.target.value)}
-              isInvalid={!!errors.shipping_address}
-            />
-            {errors.shipping_address && <Form.Text className="text-danger">{errors.shipping_address}</Form.Text>}
-          </Form.Group>
-
-          <Form.Group controlId="formPincode">
-            <Form.Label>{t('pincode_lable')}</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder={t('pincode_placeholder')}
-              value={pincode}
-              onChange={(e) => setPincode(e.target.value)}
-              isInvalid={!!errors.pincode}
-
-            />
-            {errors.pincode && <Form.Text className="text-danger">{errors.pincode}</Form.Text>}
-          </Form.Group>
 
           <Button className='login_button btn border border-secondary rounded-pill px-5 text-primary' variant="primary" onClick={handleSignUpSubmit} disabled={isLoading}>
             {isLoading ? t('loading') : t('sign_up_link')}

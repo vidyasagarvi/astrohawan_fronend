@@ -14,11 +14,11 @@ const ForgotPasswordModal = ({ show, handleClose, handleShowSignUp, handleLoginU
 
   const validateForm = () => {
    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex for email validation
-    if (!email) {
-      newErrors.email = t('email_placeholder');
-    } else if (!emailRegex.test(email)) {
-      newErrors.email = t('email_invalid');
+    const mobileRegex = /^[0-9]+$/; // Regex for numbers only
+    if (!mobile_no) {
+      newErrors.mobile_no = t('mobile_no_required');
+    } else if (!mobileRegex.test(mobile_no)) {
+      newErrors.mobile_no = t('invalid_mobile_no'); // Invalid if it contains non-numeric characters
     }
 
     setErrors(newErrors);

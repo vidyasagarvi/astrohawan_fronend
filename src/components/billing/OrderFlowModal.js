@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form, Tab, Nav } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useCart } from '../../context/CartContext';
 import axios from 'axios';
 import Config from '../../config/Config';
 import delete_cart from '../../assets/delete-cart.png';
@@ -27,8 +26,6 @@ const getUserData = async () => {
 
 const OrderFlowModal = ({ show, handleClose, totalQuantity, productsByCategory }) => {
   const { t } = useTranslation();
-  const { state, dispatch } = useCart();
-  const { cartItems } = state;
   const [phoneNumber, setPhoneNumber] = useState('');
   const [otp, setOtp] = useState('');
   const [name, setName] = useState('');

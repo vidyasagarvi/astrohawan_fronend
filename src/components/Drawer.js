@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Config from '../config/Config';
 import '../css/Drawer.css';
-import { useCart } from '../context/CartContext';
 import delete_cart from '../assets/delete-cart.png';
 import axios from 'axios';
 import LoginModal from './modals/LoginModal';
@@ -11,10 +10,8 @@ import SignUpModal from './modals/SignUpModal';
 import VerifyOtpModal from './modals/VerifyOtpModal';
 import ProceedToPaymentModal from './modals/ProceedToPaymentModal';
 
-const Drawer = ({ isOpen, onClose, totalQuantity, productsByCategory }) => {
+const Drawer = ({ isOpen, onClose, totalQuantity }) => {
   const { t } = useTranslation();
-  const { state, dispatch } = useCart();
-  const { cartItems } = state;
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showForgotPasswordModal, setShowForgotPasswordModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);

@@ -10,7 +10,6 @@ function Disclaimers() {
 <div className='container py-5'>
       <h1>Disclaimer</h1>
       {<Disclamer  />}
-
    </div>
 
 </div>

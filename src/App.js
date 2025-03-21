@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Pujas from './components/Pujas';
-import ServicesOffered from './components/ServicesOffered';
-import PoojaStore from './components/PoojaStore';
-import Helps from './components/Helps';
+
 import About from './components/staticPages/About'
 import TermsCondition from './components/staticPages/TermsCondition'
 import PrivacyPpolicy from './components/staticPages/PrivacyPpolicy'
 import Disclaimers from './components/staticPages/Disclaimers.js'
 import RefundReplacementPolicy from './components/staticPages/RefundReplacementPolicy.js'
+import CartSummary from "./context/CartSummary.js";
+import Checkout from "./components/CartSummery.js";
+
 
 import Auction from './components/Auction';
 import ContactUs from './components/ContactUs.js';
 import Mahakumbh from './components/mahakumbh/Mahakumbh.js';
+
+import Services from './components/Services.js';
+import Hawans from './components/Hawans.js';
+import Yantra from './components/Yantra.js';
+import RakshaKit from './components/RakshaKit.js';
+import Jaaps from './components/Jaaps.js'
+
+
+
 import NavBar from './components/navbar/NavBar';
 import Hero from './components/hero/Hero';
 import Footer from './components/Footer';
 import AdminFooter from './components/admin/AdminFooter'; // Import AdminFooter
-import Drawer from './components/Drawer';
-import { useCart } from './context/CartContext';
-import usePujas from './hooks/usePujas';
+
 
 // Site admin
 
@@ -42,35 +49,19 @@ import AccountDetails from './components/users/AccountDetails.js'
 
 
 import PujaStoreDetails from './components/pujaStore/PujaStoreDetails'
-import MandirDetails from './components/mandir/MandirDetails'
-import HelpsDetails from './components/helps/HelpsDetails'
-import ServiceDetails from './components/ourServices/ServiceDetails'
+import ServicesDetails from './components/services/ServicesDetails.js'
+import HawanDetails from './components/hawans/HawansDetails.js'
+import YantraDetails from './components/yantra/YantraDetails.js'
+import JaapDetails from './components/jaap/JaapDetails.js'
+
+
 
 import { useTranslation } from 'react-i18next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { state } = useCart();
-  const { cartItems } = state;
-  const { t, i18n } = useTranslation();
-  const { pujas } = usePujas(i18n.language);
 
-  // Function to group products by category
-  const groupProductsByCategory = (products) => {
-    const groupedProducts = {};
-    products.forEach((puja) => {
-      const category = puja._translations[0].name;
-      if (!groupedProducts[category]) {
-        groupedProducts[category] = [];
-      }
-      groupedProducts[category].push(...puja._products);
-    });
-    return groupedProducts;
-  };
-
-  const productsByCategory = pujas ? groupProductsByCategory(pujas) : {};
-  const totalQuantity = cartItems.reduce((accumulator, currentObject) => accumulator + currentObject.quantity, 0);
 
   // Function to determine if the current route is an admin route
   const isAdminRoute = (pathname) => {
@@ -81,23 +72,21 @@ const App = () => {
 
   return (
     <div>
-      <NavBar totalQuantity={totalQuantity} setIsDrawerOpen={setIsDrawerOpen} productsByCategory={productsByCategory} />
+      <NavBar  setIsDrawerOpen={setIsDrawerOpen} />
 
       <Routes>
         <Route path="/" element={<Hero />} />
-        <Route path="/shop" element={<Pujas setIsDrawerOpen={setIsDrawerOpen} productsByCategory={productsByCategory} />} />
-        <Route path="/services" element={<ServicesOffered />} />
-        <Route path="/pooja-store" element={
-          <>
-            <PoojaStore />
-            <Pujas setIsDrawerOpen={setIsDrawerOpen} productsByCategory={productsByCategory} />
-          </>
-        } />
-        <Route path="/helps" element={<Helps />} />
+        <Route path="/services" element={<Services />} />
+    
+
         <Route path="/auction" element={<Auction />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/makakumbh" element={<Mahakumbh />} />
-        
+        <Route path="/hawans" element={<Hawans />} />
+        <Route path="/yantra" element={<Yantra />} />
+        <Route path="/raksha-kit" element={<RakshaKit />} />
+        <Route path="/jaaps" element={<Jaaps />} />
+       
         <Route path="/about-us" element={<About />} />
         <Route path="/terms-conditions" element={<TermsCondition />} />
         <Route path="/privacy-policy" element={<PrivacyPpolicy />} />
@@ -111,12 +100,13 @@ const App = () => {
 
         <Route path="/pooja-store/:productId" element={<PujaStoreDetails setIsDrawerOpen={setIsDrawerOpen} />} />
         
-        {/* Single Mandir details */}
-        <Route path="/mandir/:mandirId" element={<MandirDetails />} />
-        <Route path="/helps/:helpsId" element={<HelpsDetails />} />
+        {/* Single Item Details */}
+        <Route path="/service/:serviceId" element={<ServicesDetails />} />
+        <Route path="/hawan/:hawanId" element={<HawanDetails />} />
+        <Route path="/yantras/:yantraId" element={<YantraDetails />} />
+        <Route path="/jaap/:jaapId" element={<JaapDetails />} />
 
-        {/* Single Service Details */}
-        <Route path="/service/:serviceId" element={<ServiceDetails />} />
+        
 
         {/* Site admin */}
         <Route path="/admin" element={<AdminLoginPage />} />
@@ -134,22 +124,15 @@ const App = () => {
       <Route path="/my-account/orders" element={<UserRoute><UserLayout><UsersOrders /></UserLayout></UserRoute>} />
       <Route path="/my-account/profile" element={<UserRoute><UserLayout><AccountDetails /></UserLayout></UserRoute>} />
 
-      
+      <Route path="/checkout" element={<Checkout />} />
+
 
       </Routes>
 
       {/* Conditionally render the footer based on the current route */}
       {!isAdminRoute(location.pathname) ? <Footer /> : <AdminFooter />}
 
-     
-
-
-      <Drawer
-        isOpen={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        totalQuantity={totalQuantity}
-        productsByCategory={productsByCategory}
-      />
+      {location.pathname !== "/checkout" && <CartSummary />}
     </div>
   );
 };
