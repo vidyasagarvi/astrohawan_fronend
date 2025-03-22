@@ -16,8 +16,8 @@ function HomePage() {
                     <p>{t('home_page_content')}</p>
                 </div>
 
-                <div class="container-fluid">
-                    <h2 class="text-center fw-bold heading pb-2">{t('home_page_service_title')}</h2>
+                <div className="container-fluid">
+                    <h2 className="text-center fw-bold heading pb-2">{t('home_page_service_title')}</h2>
                 </div>
 
 
@@ -38,8 +38,8 @@ function HomePage() {
                     <ServicesList lang={language} />
                 </Suspense>
 
-                <div class="container-fluid py-4">
-                    <h2 class="text-center fw-bold heading">{t('hawan_title')}</h2>
+                <div className="container-fluid py-4">
+                    <h2 className="text-center fw-bold heading">{t('hawan_title')}</h2>
                 </div>
                 <Suspense fallback={<div>Loading Process Details...</div>}>
                     <HawansList lang={language} />

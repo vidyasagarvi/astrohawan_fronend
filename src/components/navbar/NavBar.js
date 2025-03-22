@@ -1,5 +1,6 @@
 import React, {useContext, useState , useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { toast } from "react-toastify";
 import LanguageSelector from '../LanguageSelector.js';
 import { CartContext } from "../../context/CartContext.js";
 import { useTranslation } from 'react-i18next';
@@ -10,6 +11,7 @@ import VerifyOtpModal from '../modals/VerifyOtpModal';
 import cart_img from '../../assets/cart.png';
 import icons_account from '../../assets/icons-account-96.png';
 import site_logo from '../../assets/site_logo.png';
+
 
 function NavBar({ totalQuantity, setIsDrawerOpen }) {
   const { t } = useTranslation();
@@ -24,16 +26,12 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
   const navigate = useNavigate();
   const location = useLocation(); // To get the current location
   const navbarCollapseRef = useRef(null);
+  const userData = JSON.parse(localStorage.getItem("userData"));
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const searchParams = new URLSearchParams(location.search);
   const language = searchParams.get('lang') || 'en';
-
-  const handleDrawerOpen = (event) => {
-    event.preventDefault(); // Prevent default anchor tag behavior
-    setIsDrawerOpen(true);
-  };
 
   const closeMenu = () => {
     if (navbarCollapseRef.current && window.innerWidth < 1200) { // Check for mobile screen width
@@ -43,7 +41,6 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
 
   const handleLoginUser = (event) => {
     event.preventDefault();
-    const userData = JSON.parse(localStorage.getItem("userData"));
     if (userData) {
       setShowUserMenu(!showUserMenu); // Toggle the user menu visibility
     } else {
@@ -60,6 +57,23 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
     setShowUserMenu(false);
     navigate('/');
   };
+
+  const viewcartSummery = (event) => {
+    event.preventDefault(); 
+    if (userData) {
+      if(totalItems>0){
+        navigate(`checkout?lang=${language}`);
+      }else{
+         toast.info("Sorry !! Your cart is empty 🛒");
+      }
+    } else {
+      setShowLoginModal(true);
+    }
+
+  };
+
+
+
 
   // Helper function to determine if the link is active
   const isActive = (path) => location.pathname === path;
@@ -138,7 +152,7 @@ function NavBar({ totalQuantity, setIsDrawerOpen }) {
           <div className="d-flex align-items-center order-xl-2 order-1 ms-auto ms-xl-0">
             <LanguageSelector />
             <div className="card-icon">
-              <a href="#" className="position-relative" onClick={setIsDrawerOpen}>
+              <a href="#" className="position-relative" onClick={viewcartSummery}>
                 <img src={cart_img} alt="Cart" />
                 <span
                   className="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"

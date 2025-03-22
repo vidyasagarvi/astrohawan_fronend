@@ -20,6 +20,7 @@ function HawansDetails() {
     const { hawanId } = useParams();
     const [relatedItems, setRelatedItems] = useState([]);
     const { cart, addToCart } = useContext(CartContext);
+    const userData = JSON.parse(localStorage.getItem("userData"));
 
     const searchParams = new URLSearchParams(window.location.search);
     const language = searchParams.get('lang') || 'en';
@@ -150,17 +151,16 @@ function HawansDetails() {
                                 <div className="puja-details">
                                     <h2 className="puja-title">{items.translations.name}</h2>
 
-                                    {/* Ratings */}
-                                    {/* <div className="puja-rating">
-          ⭐ 4.8
-          <span className="stars">★★★★☆</span>
-        </div> */}
-
-                                    {/* Button Group for "Laghu" & "Maha" */}
-
-                                    {/* Price */}
                                     <div className="puja-price">
-                                        <span className="price">₹ 18,000</span>
+
+                                        {!userData ? (
+                                            <span className="price">  ₹{items.price_national} - ${items.price_international}</span>
+                                        ) : userData.calling_code === "+91" ? (
+                                            <span className="price">  ₹{items.price_national}</span>
+                                        ) : (
+                                            <span className="price"> ${items.price_international}</span>
+                                        )}
+                                        
                                         <p className="advance-payment">
                                             An advanced payment will be required to make a booking
                                         </p>
@@ -168,15 +168,15 @@ function HawansDetails() {
 
                                     {/* Buttons - Add to Cart & Book Puja */}
                                     <div className="puja-buttons">
-                                        <button onClick={() => addToCart({ ...items, type: "hawan" })}
+                                        <button onClick={() => addToCart({ ...items, type: "hawan" }, 1)}
                                             className="add-to-cart">
                                             Add to cart
                                         </button>
 
-                                        <button onClick={() => handlePlaceOrderClick({ ...items, type: "service" })}
+                                        {/* <button onClick={() => handlePlaceOrderClick({ ...items, type: "service" })}
                                             className="book-puja">
                                             Book Puja
-                                        </button>
+                                        </button> */}
                                     </div>
 
 
@@ -219,8 +219,11 @@ function HawansDetails() {
                             <h2 class="text-center fw-bold heading pb-2">YOU MAY ALSO LIKE</h2>
                             <Slider {...settings}>
                                 {relatedItems.map((Items, index) => (
-                                    <Link key={index} to={`/hawan/${Items.id}?lang=${language}`}>
+                                    
                                         <div className="realted-item-card" >
+                                            
+                                            <div>
+                                            <Link key={index} to={`/hawan/${Items.id}?lang=${language}`}>
                                             <div className="realted-item-images" key={Items.id} >
                                                 <img
                                                     src={`${Config.apiUrl}${Items.images[0]}`}
@@ -235,17 +238,28 @@ function HawansDetails() {
 
                                             <div class="text-center mt-1">
                                                 <p class="color-darkpink  mb-0">
-                                                    ₹5100 - $150
+
+                                                    {!userData ? (
+                                                        <span>  ₹{Items.price_national} - ${Items.price_international}</span>
+                                                    ) : userData.calling_code === "+91" ? (
+                                                        <span>  ₹{Items.price_national}</span>
+                                                    ) : (
+                                                        <span> ${Items.price_international}</span>
+                                                    )}
                                                 </p>
+                                            </div>
+                                            </Link>
                                             </div>
 
                                             <div className="text-center">
-                                                <button className="payment_button btn border border-secondary rounded-pill px-5 text-primary">Add to Cart</button>
+                                            <button onClick={() => addToCart({ ...Items, type: "hawan" }, 1)}
+                                                    className="payment_button btn border border-secondary rounded-pill px-5 text-primary">
+                                                    Add to cart
+                                                </button>
                                             </div>
                                         </div>
 
-
-                                    </Link>
+                                   
                                 ))}
                             </Slider>
                         </div>

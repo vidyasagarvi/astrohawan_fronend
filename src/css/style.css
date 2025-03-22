@@ -1218,6 +1218,10 @@ cursor: pointer;
    
 }
 
+.site-footer.footer-with-margin{
+  margin-bottom: 60px; /* Adjust margin as needed */
+}
+
 .site-footer h4{
     border-bottom: 0.5px solid #5c5959;
     padding-bottom: 12px;
@@ -1573,13 +1577,17 @@ cursor: pointer;
     border: 1px solid #b6d7b6;
     border-radius: 8px;
     text-align: center;
+    margin-bottom: 10px;
   }
-
-  
 
   
   /* Responsive Design */
   @media (max-width: 768px) {
+    
+    .container{
+      padding: 0px !important;
+    }
+    
     .contact-us-container {
       flex-direction: column;
     }
