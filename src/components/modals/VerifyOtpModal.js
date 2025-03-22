@@ -27,6 +27,8 @@ const VerifyOtpModal = ({ show, handleClose, handleShowLogin,userID }) => {
       handleShowLogin();
       handleClose();
     } catch (error) {
+      newErrors.otp = t('invalid_otp');
+      setErrors(newErrors);
       console.error('OTP verification error:', error);
     } finally {
       setIsLoading(false);
@@ -39,7 +41,7 @@ const VerifyOtpModal = ({ show, handleClose, handleShowLogin,userID }) => {
         <Modal.Title>{t('verify_otp')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>Sent a verification code to your Email Address </p>
+        <p>Sent a verification code to your Mobile no</p>
         <Form>
           <Form.Group controlId="formOTP">
             <Form.Label>{t('otp_lable')}</Form.Label>

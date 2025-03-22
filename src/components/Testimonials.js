@@ -110,7 +110,7 @@ function Testimonials({ lang }) {
     return (
         <div className="testimonials">
             <h2>{t('testimonials_title')}</h2>
-            <h3>9 / 10 Devotees rate satim 5⭐ for our good service</h3>
+            <h3>9 / 10 Devotees rate Astrohawan 5⭐ for our good service</h3>
             <Slider {...settings}>
                 {testimonials.map((testimonial) => (
                     <div key={testimonial.id} className="testimonials-card rounded position-relative">

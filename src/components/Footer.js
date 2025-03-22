@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-function Footer() {
+function Footer({ className }) {
     const { t } = useTranslation();
     return (
         <div>
-            <div className="site-footer bg-dark text-white-50 footer pt-5 mt-5">
+            <div className={`site-footer bg-dark text-white-50 footer pt-5 mt-5 ${className}`}>
                 <div className="container py-1">
 
                     <div className="row g-3">

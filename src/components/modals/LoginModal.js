@@ -6,7 +6,6 @@ import axios from "axios";
 import Config from "../../config/Config";
 import loginImage from "../../assets/shiv.jpg";
 import countryCodes from "./countryCodes"; // Import country codes list
-import "./PhoneInput.css"; // Custom styles
 
 const LoginModal = ({ show, handleClose, handleShowSignUp, handleShowForgotPassword, handleLoginSuccess }) => {
   const { t } = useTranslation();
@@ -48,7 +47,9 @@ const LoginModal = ({ show, handleClose, handleShowSignUp, handleShowForgotPassw
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-      const response = await axios.post(`${Config.apiUrl}api/users/login`, {callingCode:selectedCountry.value,phone: phoneNumber, password });
+      const phone = cleanPhoneNumber(phoneNumber)
+      const callingCode = cleanPhoneNumber(selectedCountry.value)
+      const response = await axios.post(`${Config.apiUrl}api/users/login`, {callingCode,phone, password });
       localStorage.setItem("userData", JSON.stringify({
         token: response.data.user.id,
         calling_code: response.data.user.calling_code
@@ -61,6 +62,12 @@ const LoginModal = ({ show, handleClose, handleShowSignUp, handleShowForgotPassw
       setIsLoading(false);
     }
   };
+
+  const cleanPhoneNumber = (phone) => {
+    return phone.replace(/^\+?0*/, ''); 
+};
+
+
 
   return (
     <Modal show={show} onHide={handleClose} centered className="login-model">
@@ -108,7 +115,7 @@ const LoginModal = ({ show, handleClose, handleShowSignUp, handleShowForgotPassw
                     placeholder={t('mobile_no_placeholder')}
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    style={{ border: "none", outline: "none", flex: 1, fontSize: "16px" }}
+                    style={{ border: "none", outline: "none", flex: 1, fontSize: "14px" , width:"100%" }}
                   />
                 </div>
                 {errors.mobile_no && <Form.Text className="text-danger">{errors.mobile_no}</Form.Text>}

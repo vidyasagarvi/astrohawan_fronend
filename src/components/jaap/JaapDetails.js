@@ -20,6 +20,8 @@ function JaapDetails() {
     const { jaapId } = useParams();
     const [relatedItems, setRelatedItems] = useState([]);
     const { cart, addToCart } = useContext(CartContext);
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
 
     const searchParams = new URLSearchParams(window.location.search);
     const language = searchParams.get('lang') || 'en';
@@ -45,36 +47,6 @@ function JaapDetails() {
 
         fetchItems();
     }, [jaapId, language]);
-
-
-    const handleAddToCart = async (servicesCart) => {
-        const savedCart = localStorage.getItem("cartItems");
-
-        let quantity = 1;
-        if (savedCart) {
-            const parsedCart = JSON.parse(savedCart);
-            if (Array.isArray(parsedCart) && parsedCart.length > 0) {
-                quantity = parsedCart.filter(item => item.type === "service").length + 1;
-            }
-        }
-
-        const fetchedPrices = await fetchPrice(quantity); // Use returned value
-        if (!fetchedPrices || fetchedPrices.length === 0) {
-            console.error("Failed to fetch prices.");
-            return;
-        }
-
-        const groupedPrices = fetchedPrices.reduce((acc, item) => {
-            if (!acc[item.currency]) {
-                acc[item.currency] = 0;
-            }
-            acc[item.currency] += parseFloat(item.price);
-            return acc;
-        }, {});
-
-        addToCart({ ...servicesCart, type: 'service', groupedPrices }, 1);
-
-    };
 
 
 
@@ -208,7 +180,13 @@ function JaapDetails() {
 
                                     {/* Price */}
                                     <div className="puja-price">
-                                        <span className="price">₹ 18,000</span>
+                                        {!userData ? (
+                                            <span className="price">  ₹{items.price_national} - ${items.price_international}</span>
+                                        ) : userData.calling_code === "+91" ? (
+                                            <span className="price">  ₹{items.price_national}</span>
+                                        ) : (
+                                            <span className="price"> ${items.price_international}</span>
+                                        )}
                                         <p className="advance-payment">
                                             An advanced payment will be required to make a booking
                                         </p>
@@ -216,15 +194,15 @@ function JaapDetails() {
 
                                     {/* Buttons - Add to Cart & Book Puja */}
                                     <div className="puja-buttons">
-                                        <button onClick={() => handleAddToCart({ ...items, type: "service" })}
+                                        <button onClick={() => addToCart({ ...items, type: "jaap" }, 1)}
                                             className="add-to-cart">
                                             Add to cart
                                         </button>
 
-                                        <button onClick={() => handlePlaceOrderClick({ ...items, type: "service" })}
+                                        {/* <button onClick={() => handlePlaceOrderClick({ ...items, type: "service" })}
                                             className="book-puja">
                                             Book Puja
-                                        </button>
+                                        </button> */}
                                     </div>
 
 
@@ -267,8 +245,9 @@ function JaapDetails() {
                             <h2 class="text-center fw-bold heading pb-2">YOU MAY ALSO LIKE</h2>
                             <Slider {...settings}>
                                 {relatedItems.map((Items, index) => (
-                                    <Link key={index} to={`/jaap/${Items.id}?lang=${language}`}>
                                         <div className="realted-item-card" >
+                                           <div>
+                                           <Link key={index} to={`/jaap/${Items.id}?lang=${language}`}>
                                             <div className="realted-item-images" key={Items.id} >
                                                 <img
                                                     src={`${Config.apiUrl}${Items.images[0]}`}
@@ -283,17 +262,29 @@ function JaapDetails() {
 
                                             <div class="text-center mt-1">
                                                 <p class="color-darkpink  mb-0">
-                                                    ₹5100 - $150
+                                                    {!userData ? (
+                                                        <span>  ₹{Items.price_national} - ${Items.price_international}</span>
+                                                    ) : userData.calling_code === "+91" ? (
+                                                        <span>  ₹{Items.price_national}</span>
+                                                    ) : (
+                                                        <span> ${Items.price_international}</span>
+                                                    )}
                                                 </p>
+                                            </div>
+                                            </Link>
                                             </div>
 
                                             <div className="text-center">
-                                                <button className="payment_button btn border border-secondary rounded-pill px-5 text-primary">Add to Cart</button>
+                                                <button onClick={() => addToCart({ ...Items, type: "jaap" }, 1)}
+                                                    className="payment_button btn border border-secondary rounded-pill px-5 text-primary">
+                                                    Add to cart
+                                                </button>
                                             </div>
+                                           
+
                                         </div>
 
-
-                                    </Link>
+                                    
                                 ))}
                             </Slider>
                         </div>

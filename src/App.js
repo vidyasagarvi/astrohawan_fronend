@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
+
 
 import About from './components/staticPages/About'
 import TermsCondition from './components/staticPages/TermsCondition'
@@ -8,11 +10,11 @@ import Disclaimers from './components/staticPages/Disclaimers.js'
 import RefundReplacementPolicy from './components/staticPages/RefundReplacementPolicy.js'
 import CartSummary from "./context/CartSummary.js";
 import Checkout from "./components/CartSummery.js";
+import { CartContext } from "./context/CartContext.js"; // Adjust the path as needed
 
 
 import Auction from './components/Auction';
 import ContactUs from './components/ContactUs.js';
-import Mahakumbh from './components/mahakumbh/Mahakumbh.js';
 
 import Services from './components/Services.js';
 import Hawans from './components/Hawans.js';
@@ -68,45 +70,46 @@ const App = () => {
     return pathname.startsWith('/admin');
   };
 
+  const { cart } = useContext(CartContext);
   const location = useLocation(); // Hook to get current location
+  const isCartVisible = location.pathname !== "/checkout" && cart.length > 0;
 
   return (
     <div>
-      <NavBar  setIsDrawerOpen={setIsDrawerOpen} />
+      <NavBar setIsDrawerOpen={setIsDrawerOpen} />
+
+      <ToastContainer position="top-right" autoClose={2000} />
 
       <Routes>
         <Route path="/" element={<Hero />} />
         <Route path="/services" element={<Services />} />
-    
+
 
         <Route path="/auction" element={<Auction />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/makakumbh" element={<Mahakumbh />} />
         <Route path="/hawans" element={<Hawans />} />
         <Route path="/yantra" element={<Yantra />} />
         <Route path="/raksha-kit" element={<RakshaKit />} />
         <Route path="/jaaps" element={<Jaaps />} />
-       
+
         <Route path="/about-us" element={<About />} />
         <Route path="/terms-conditions" element={<TermsCondition />} />
         <Route path="/privacy-policy" element={<PrivacyPpolicy />} />
         <Route path="/disclaimers" element={<Disclaimers />} />
         <Route path="/refund-replacement-policy" element={<RefundReplacementPolicy />} />
 
-        
+
 
         {/* Single Puja Store details */}
         {/*<Route path="/pooja-store/:productId" element={<PujaStoreDetails />} />*/}
 
         <Route path="/pooja-store/:productId" element={<PujaStoreDetails setIsDrawerOpen={setIsDrawerOpen} />} />
-        
+
         {/* Single Item Details */}
         <Route path="/service/:serviceId" element={<ServicesDetails />} />
         <Route path="/hawan/:hawanId" element={<HawanDetails />} />
         <Route path="/yantras/:yantraId" element={<YantraDetails />} />
         <Route path="/jaap/:jaapId" element={<JaapDetails />} />
-
-        
 
         {/* Site admin */}
         <Route path="/admin" element={<AdminLoginPage />} />
@@ -118,19 +121,22 @@ const App = () => {
         {/*<Route path="/admin/store-orders" element={<AdminRoute><AdminOrderList /></AdminRoute>} />
         <Route path="/admin/users" element={<AdminRoute><AdminUserList /></AdminRoute>} /> */}
 
-      {/* Site User */}
-      <Route path="/my-account" element={<UserRoute><UserLayout><UserDashboard /></UserLayout></UserRoute>} />
-      <Route path="/my-account/password" element={<UserRoute><UserLayout><UpdatePassword /></UserLayout></UserRoute>} />
-      <Route path="/my-account/orders" element={<UserRoute><UserLayout><UsersOrders /></UserLayout></UserRoute>} />
-      <Route path="/my-account/profile" element={<UserRoute><UserLayout><AccountDetails /></UserLayout></UserRoute>} />
+        {/* Site User */}
+        <Route path="/my-account" element={<UserRoute><UserLayout><UserDashboard /></UserLayout></UserRoute>} />
+        <Route path="/my-account/password" element={<UserRoute><UserLayout><UpdatePassword /></UserLayout></UserRoute>} />
+        <Route path="/my-account/orders" element={<UserRoute><UserLayout><UsersOrders /></UserLayout></UserRoute>} />
+        <Route path="/my-account/profile" element={<UserRoute><UserLayout><AccountDetails /></UserLayout></UserRoute>} />
 
-      <Route path="/checkout" element={<Checkout />} />
-
-
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
 
       {/* Conditionally render the footer based on the current route */}
-      {!isAdminRoute(location.pathname) ? <Footer /> : <AdminFooter />}
+
+      {!isAdminRoute(location.pathname) ? (
+        <Footer className={isCartVisible ? "site-footer footer-with-margin" : "site-footer"} />
+      ) : (
+        <AdminFooter />
+      )}
 
       {location.pathname !== "/checkout" && <CartSummary />}
     </div>

@@ -1,24 +1,33 @@
 import React, { useState } from 'react';
+import Select from "react-select";
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Config from '../../config/Config';
 import axios from 'axios';
 import countryCodes from "./countryCodes";
-import "./PhoneInput.css"; // Custom styles
 
 const SignUpModal = ({ show, handleClose, handleShowVerifyOtp, handleShowForgotPassword, handleLoginUser }) => {
   const { t } = useTranslation();
   const [name, setName] = useState('');
-  const [mobile_no, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const newErrors = {};
+
+  const countryOptions = countryCodes.map((country) => ({
+    value: country.dial_code, // e.g., "+91"
+    label: `${country.emoji} ${country.name} (${country.dial_code})`, // Dropdown full details
+    displayLabel: `${country.emoji} ${country.dial_code}`, // Selected value (emoji + dial code only)
+  }));
+
+  const [selectedCountry, setSelectedCountry] = useState(countryOptions[22]); // Default: India
+  const [mobile_no, setPhoneNumber] = useState("");
+
   const validateForm = () => {
-  
+
     if (!name) {
-      newErrors.name = t('name_placeholder');
+        newErrors.name = t('name_placeholder');
     }
 
     const mobileRegex = /^[0-9]+$/; // Regex for numbers only
@@ -50,7 +59,10 @@ const SignUpModal = ({ show, handleClose, handleShowVerifyOtp, handleShowForgotP
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-      const response = await axios.post(`${Config.apiUrl}api/users/signup`, { name, mobile_no: mobile_no, email, shipping_address, pincode, password });
+      const phone = cleanPhoneNumber(mobile_no)
+      const callingCode = cleanPhoneNumber(selectedCountry.value)
+      const response = await axios.post(`${Config.apiUrl}api/users/signup`, { name,callingCode:callingCode, mobile_no: phone,email, password });
+
       if(response.data.userId!=""){
         handleShowVerifyOtp(response.data.userId);
         handleClose();
@@ -70,6 +82,10 @@ const SignUpModal = ({ show, handleClose, handleShowVerifyOtp, handleShowForgotP
     }
   };
 
+  const cleanPhoneNumber = (phone) => {
+    return phone.replace(/^\+?0*/, ''); 
+};
+
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -88,17 +104,46 @@ const SignUpModal = ({ show, handleClose, handleShowVerifyOtp, handleShowForgotP
             />
             {errors.name && <Form.Text className="text-danger">{errors.name}</Form.Text>}
           </Form.Group>
-          <Form.Group controlId="formPhoneNumber">
-            <Form.Label>{t('mobile_no_title')}</Form.Label>
-            <Form.Control
-              type="tel"
-              placeholder={t('mobile_no_placeholder')}
-              value={mobile_no}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              isInvalid={!!errors.mobile_no}
-            />
-            {errors.mobile_no && <Form.Text className="text-danger">{errors.mobile_no}</Form.Text>}
-          </Form.Group>
+          
+          
+          
+          <Form.Group controlId="formMobile">
+                <Form.Label>{t("mobile_no_title")}</Form.Label>
+                <div style={{ display: "flex", alignItems: "center", border: "1px solid #ccc", borderRadius: "8px", padding: "8px", width: "100%" }}>
+                  
+                  {/* Country Code Dropdown */}
+                  <Select
+                    options={countryOptions}
+                    value={selectedCountry}
+                    onChange={(selected) => setSelectedCountry(selected)}
+                    getOptionLabel={(e) => (e.value === selectedCountry.value ? e.displayLabel : e.label)} // Dropdown shows full details; selected shows emoji + dial code
+                    styles={{
+                      control: (base) => ({
+                        ...base,
+                        width: "100px",
+                        border: "none",
+                        boxShadow: "none",
+                        backgroundColor: "transparent",
+                      }),
+                      dropdownIndicator: (base) => ({
+                        ...base,
+                        padding: "0 5px",
+                      }),
+                    }}
+                  />
+
+                  {/* Phone Number Input */}
+                  <input
+                    type="text"
+                    placeholder={t('mobile_no_placeholder')}
+                    value={mobile_no}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    style={{ border: "none", outline: "none", flex: 1, fontSize: "14px" , width:"100%" }}
+                  />
+                </div>
+                {errors.mobile_no && <Form.Text className="text-danger">{errors.mobile_no}</Form.Text>}
+              </Form.Group>
+         
           <Form.Group controlId="formEmail">
             <Form.Label>{t('email_title')}</Form.Label>
             <Form.Control

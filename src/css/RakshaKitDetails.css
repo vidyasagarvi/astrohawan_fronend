@@ -18,51 +18,6 @@
     gap: 20px;
 }
 
-/* Left: Image Section */
-.rakshakit-image-section {
-    flex: 3;
-    max-width: 50%;
-    position: relative;
-}
-
-.rakshakit-image-section img {
-    width: 100%;
-    height: 450px; /* Increased height */
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-/* Custom Slider Arrows */
-.slick-prev,
-.slick-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
-    border-radius: 50%;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.slick-prev:hover,
-.slick-next:hover {
-    background-color: rgba(0, 0, 0, 0.9);
-}
-
-.slick-prev {
-    left: 10px;
-}
-
-.slick-next {
-    right: 10px;
-}
 
 /* Right: Description Section */
 .rakshakit-info-section {

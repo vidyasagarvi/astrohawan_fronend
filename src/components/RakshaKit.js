@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useContext} from 'react';
 import { useTranslation } from 'react-i18next';
 import Config from '../config/Config.js';
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { CartContext } from "../context/CartContext";
 import '../css/RakshaKitDetails.css'; // Updated CSS
+import PanditImage from '../assets/mages/pandit.png';
+import ExperienceImage from '../assets/mages/experience.png';
+import PujaImage from '../assets/mages/puja.png';
+import SolutionImage from '../assets/mages/solution.png';
 
 function RakshaKit() {
     const { t } = useTranslation();
@@ -13,6 +15,10 @@ function RakshaKit() {
     const [error, setError] = useState(null);
     const searchParams = new URLSearchParams(location.search);
     const language = searchParams.get('lang') || 'en';
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const { cart, addToCart } = useContext(CartContext);
+    
+
 
     useEffect(() => {
         const fetchRakshkit = async () => {
@@ -40,45 +46,106 @@ function RakshaKit() {
 
     return (
         <div className='container-fluid'>
-            
             <div class="container-fluid page-header py-2">
-      <h2 class="text-center fw-bold heading pb-2">{t('home_page_service_title')}</h2>
-      </div>
+            </div>
+            <div className='container'>
+            {rakshakit.map((kit) => (
             <div className="rakshakit-container">
-                {rakshakit.map((kit) => (
+               
                     <div className="rakshakit-card" key={kit.id}>
                         {/* Left: Image Slider */}
                         <div className="rakshakit-image-section">
-                            <Slider
-                                dots={false}
-                                infinite={true}
-                                speed={500}
-                                slidesToShow={1}
-                                slidesToScroll={1}
-                                autoplay={true}
-                            >
-                                {kit.images.map((image, index) => (
-                                    <div key={index}>
-                                        <img src={`${Config.apiUrl}${image}`} alt={`Raksha Kit ${index}`} />
-                                    </div>
-                                ))}
-                            </Slider>
+
+
+                            <div id="carouselId" className="carousel slide position-relative" data-bs-ride="carousel">
+                                <div className="carousel-inner puja-card" role="listbox">
+                                    {kit.images.map((image, index) => (
+                                        <div className={`carousel-item ${index === 0 ? 'active' : ''} puja-image`} key={index}>
+                                            <img
+                                                src={`${Config.apiUrl}${image}`}
+                                                alt={`Product ${index}`}
+                                                className="img-fluid bg-secondary rounded"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                                <button className="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span className="visually-hidden">Previous</span>
+                                </button>
+                                <button className="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span className="visually-hidden">Next</span>
+                                </button>
+
+                            </div>
                         </div>
 
                         {/* Right: Details */}
-                        <div className="rakshakit-info-section">
 
-                        <p className="rakshakit-price">₹{kit.price_local}</p>
-                        <button className="rakshakit-add-to-cart">Add to Cart</button>
-                            
-                            <div
-                                            dangerouslySetInnerHTML={{ __html: kit.translations.description || 'Description not available' }}
-                             />
-                           
+                        <div className="puja-details">
+                            <h2 className="puja-title">{kit.translations.name}</h2>
+
+                            {/* Price */}
+                            <div className="puja-price">
+                                     {!userData ? (
+                                            <span className="price">  ₹{kit.price_national} - ${kit.price_international}</span>
+                                        ) : userData.calling_code === "+91" ? (
+                                            <span className="price">  ₹{kit.price_national}</span>
+                                        ) : (
+                                            <span className="price"> ${kit.price_international}</span>
+                                        )}
+
+                                <p className="advance-payment">
+                                    An advanced payment will be required to make a booking
+                                </p>
+                            </div>
+
+                            {/* Buttons - Add to Cart & Book Puja */}
+                            <div className="puja-buttons">
+                                <button onClick={() => addToCart({ ...kit, type: "rakshakit" }, 1)}
+                                    className="add-to-cart">
+                                    Add to cart
+                                </button>
+
+                                {/* <button onClick={() => handlePlaceOrderClick({ ...kit, type: "rakshakit" })}
+                                    className="book-puja">
+                                    Book Puja
+                                </button> */}
+                            </div>
+
+
+                            {/* Features List */}
+                            <ul className="puja-features">
+                                <li>
+                                    <img src={PanditImage} alt="Authentic Ritual Experts" />
+
+                                    Authentic Ritual Experts
+                                </li>
+                                <li>
+                                    <img src={ExperienceImage} alt="More than 20 Years of Proven Experience" />
+                                    More than 20 Years of Proven Experience
+                                </li>
+                                <li>
+                                    <img src={SolutionImage} alt="Trusted Ritual Solutions" />
+                                    Trusted Ritual Solutions
+                                </li>
+                                <li>
+                                    <img src={PujaImage} alt="Performed Sacred Rituals for Devotees Worldwide" />
+                                    Performed Sacred Rituals for Devotees Worldwide
+                                </li>
+                            </ul>
+                        
                         </div>
                     </div>
-                ))}
+                <div
+                    dangerouslySetInnerHTML={{ __html: kit.translations.description || 'Description not available' }}
+                />
+
             </div>
+        ))}
+        </div>
+           
         </div>
     );
 }
