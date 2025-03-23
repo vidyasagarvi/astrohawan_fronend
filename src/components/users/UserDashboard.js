@@ -14,7 +14,7 @@ function UserDashboard() {
                     throw new Error('User is not authenticated');
                 }
 
-                const response = await axios.get(`${Config.apiUrl}api/users/details`, {
+                const response = await axios.get(`${Config.apiUrl}users/details`, {
                     headers: {
                         Authorization: token,
                     },

@@ -23,7 +23,7 @@ const VerifyOtpModal = ({ show, handleClose, handleShowLogin,userID }) => {
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-      await axios.post(`${Config.apiUrl}api/users/verify-otp`, { userID, otp });
+      await axios.post(`${Config.apiUrl}users/verify-otp`, { userID, otp });
       handleShowLogin();
       handleClose();
     } catch (error) {

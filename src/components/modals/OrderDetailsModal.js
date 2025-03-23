@@ -11,7 +11,7 @@ const OrderSuccessModal = ({ show, handleClose, orderId }) => {
   useEffect(() => {
     const fetchsingleOrders = async () => {
       try {
-        const response = await axios.get(`${Config.apiUrl}api/payment/getorder-id/${orderId}`);
+        const response = await axios.get(`${Config.apiUrl}payment/getorder-id/${orderId}`);
         setOrders(response.data.orders);
       } catch (err) {
         console.error('Failed to fetch orders:', err);

@@ -12,7 +12,7 @@ const CartPage = () => {
   // Function to fetch user details
   const fetchUserDetails = async (userData) => {
     try {
-      const response = await axios.get(`${Config.apiUrl}api/users/details`, {
+      const response = await axios.get(`${Config.apiUrl}users/details`, {
         headers: {
           Authorization: userData.token,
         },

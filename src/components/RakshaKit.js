@@ -23,7 +23,7 @@ function RakshaKit() {
     useEffect(() => {
         const fetchRakshkit = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/rakshakit/getall?lang=${language}`);
+                const response = await fetch(`${Config.apiUrl}rakshakit/getall?lang=${language}`);
                 const data = await response.json();
                 if (response.ok) {
                     setRakshaKit(data);
@@ -62,7 +62,7 @@ function RakshaKit() {
                                     {kit.images.map((image, index) => (
                                         <div className={`carousel-item ${index === 0 ? 'active' : ''} puja-image`} key={index}>
                                             <img
-                                                src={`${Config.apiUrl}${image}`}
+                                                src={`${Config.imageUrl}${image}`}
                                                 alt={`Product ${index}`}
                                                 className="img-fluid bg-secondary rounded"
                                             />
@@ -90,7 +90,7 @@ function RakshaKit() {
                             <div className="puja-price">
                                      {!userData ? (
                                             <span className="price">  ₹{kit.price_national} - ${kit.price_international}</span>
-                                        ) : userData.calling_code === "+91" ? (
+                                        ) : userData.calling_code === "91" ? (
                                             <span className="price">  ₹{kit.price_national}</span>
                                         ) : (
                                             <span className="price"> ${kit.price_international}</span>

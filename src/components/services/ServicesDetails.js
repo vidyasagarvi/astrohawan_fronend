@@ -29,7 +29,7 @@ function ServiceDetails() {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/services/get/${serviceId}/${language}`);
+                const response = await fetch(`${Config.apiUrl}services/get/${serviceId}/${language}`);
                 const data = await response.json();
 
                 if (response.ok) {
@@ -82,7 +82,7 @@ function ServiceDetails() {
 
     const fetchPrice = async (quantity) => {
         try {
-            const priceResponse = await fetch(`${Config.apiUrl}api/services/getprice/${quantity}`);
+            const priceResponse = await fetch(`${Config.apiUrl}services/getprice/${quantity}`);
             const priceData = await priceResponse.json();
             if (priceResponse.ok) {
                 return priceData; // Return the fetched price
@@ -100,7 +100,7 @@ function ServiceDetails() {
 
     const fetchRelatedItems = async (language) => {
         try {
-            const response = await fetch(`${Config.apiUrl}api/services/getall?lang=${language}`);
+            const response = await fetch(`${Config.apiUrl}services/getall?lang=${language}`);
             const data = await response.json();
             if (response.ok) {
                 setRelatedItems(data);
@@ -177,7 +177,7 @@ function ServiceDetails() {
                                             {items.images.map((image, index) => (
                                                 <div className={`carousel-item ${index === 0 ? 'active' : ''} puja-image`} key={index}>
                                                     <img
-                                                        src={`${Config.apiUrl}${image}`}
+                                                        src={`${Config.imageUrl}${image}`}
                                                         alt={`Product ${index}`}
                                                         className="img-fluid bg-secondary rounded"
                                                     />
@@ -215,7 +215,7 @@ function ServiceDetails() {
 
                                         {!userData ? (
                                             <span className="price">₹5100 - $150</span>
-                                        ) : userData.calling_code === "+91" ? (
+                                        ) : userData.calling_code === "91" ? (
                                             <span className="price">₹5100</span>
                                         ) : (
                                             <span className="price">$150</span>
@@ -285,7 +285,7 @@ function ServiceDetails() {
                                             <Link key={index} to={`/service/${Items.id}?lang=${language}`}>
                                             <div className="realted-item-images" key={Items.id} >
                                                 <img
-                                                    src={`${Config.apiUrl}${Items.images[0]}`}
+                                                    src={`${Config.imageUrl}${Items.images[0]}`}
                                                     alt="product"
                                                     style={{ width: '100%', height: '210px' }}
                                                 />
@@ -300,7 +300,7 @@ function ServiceDetails() {
 
                                                     {!userData ? (
                                                         <span>₹5100 - $150</span>
-                                                    ) : userData.calling_code === "+91" ? (
+                                                    ) : userData.calling_code === "91" ? (
                                                         <span>₹5100</span>
                                                     ) : (
                                                         <span >$150</span>

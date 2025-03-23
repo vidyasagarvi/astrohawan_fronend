@@ -21,7 +21,7 @@ function ServicesList() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/services/getall?lang=${language}`);
+                const response = await fetch(`${Config.apiUrl}services/getall?lang=${language}`);
                 const data = await response.json();
 
                 if (response.ok) {
@@ -72,7 +72,7 @@ function ServicesList() {
 
     const fetchPrice = async (quantity) => {
         try {
-            const priceResponse = await fetch(`${Config.apiUrl}api/services/getprice/${quantity}`);
+            const priceResponse = await fetch(`${Config.apiUrl}services/getprice/${quantity}`);
             const priceData = await priceResponse.json();
             if (priceResponse.ok) {
                 return priceData; // Return the fetched price
@@ -101,18 +101,18 @@ function ServicesList() {
                 <div key={service.id} className="service-card">
                         <Link to={`/service/${service.id}?lang=${language}`}>
                          <div className="service-images">
-                                <img src={`${Config.apiUrl}${service.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
+                                <img src={`${Config.imageUrl}${service.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
                             </div>
                             <div className='text-center mt-2'>
                                 <p className="fw-bold mb-0 text-black">{service.translations.name}</p>
                             </div>
 
-                            <div class="text-center mt-1">
-                                <p class="color-darkpink  mb-0">
+                            <div className="text-center mt-1">
+                                <p className="color-darkpink  mb-0">
 
                                 {!userData ? (
                                 <span> ₹5100 - $150</span>
-                                ) : userData.calling_code === "+91" ? (
+                                ) : userData.calling_code === "91" ? (
                                 <span>₹5100</span>
                                 ) : (
                                 <span>$150</span>

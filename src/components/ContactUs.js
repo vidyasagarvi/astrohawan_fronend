@@ -45,7 +45,7 @@ const handleContactUsSubmit = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-      const response = await axios.post(`${Config.apiUrl}api/contactus/queries`, { name, email, mobile_no, message});
+      const response = await axios.post(`${Config.apiUrl}contactus/queries`, { name, email, mobile_no, message});
      console.log(response);
     } catch (error) {
       setErrors(newErrors);

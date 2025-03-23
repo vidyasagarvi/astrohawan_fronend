@@ -99,7 +99,7 @@ const CartSummary = ({ user, cartItems }) => {
 
   GST = +GST;
   const SHIPPING = 10;
-  if (userData.calling_code === '+91') {
+  if (userData.calling_code === '91') {
     var TotalGST = (finalResult.INR * GST) / 100;
     var subTotal = finalResult.INR;
     var TotalPriceGST = finalResult.INR + TotalGST;
@@ -136,10 +136,18 @@ const CartSummary = ({ user, cartItems }) => {
 
   const handleSubmit = () => {
     if (validateForm()) {
+
+      updateUserinfo(formData)
       console.log("Proceed to payment with:", formData);
       // Proceed with payment logic here
     }
   };
+
+  const updateUserinfo = (formData) => {
+    console.log("Proceed to upate data:", formData);
+  };
+
+
   return (
     <div className="cart-summary-container">
       <div className="cart-content">
@@ -241,12 +249,12 @@ const CartSummary = ({ user, cartItems }) => {
           <h2 className="section-title">Payment Details</h2>
           <div className="price-breakdown">
 
-            <p>Subtotal: <span className="float-right"> {userData.calling_code == '+91' ? (<span>₹</span>) : (<span>$</span>)}{subTotal}</span></p>
-            <p>Discount: <span className="float-right text-red">{userData.calling_code == '+91' ? (<span>₹</span>) : (<span>$</span>)}0</span></p>
-            <p>GST: <span className="float-right text-red">{userData.calling_code == '+91' ? (<span>₹</span>) : (<span>$</span>)}{TotalGST}</span></p>
-            <p>Shipping Charge: <span className="float-right">{userData.calling_code == '+91' ? (<span>₹</span>) : (<span>$</span>)}{SHIPPING}</span></p>
+            <p>Subtotal: <span className="float-right"> {userData.calling_code == '91' ? (<span>₹</span>) : (<span>$</span>)}{subTotal}</span></p>
+            <p>Discount: <span className="float-right text-red">{userData.calling_code == '91' ? (<span>₹</span>) : (<span>$</span>)}0</span></p>
+            <p>GST: <span className="float-right text-red">{userData.calling_code == '91' ? (<span>₹</span>) : (<span>$</span>)}{TotalGST}</span></p>
+            <p>Shipping Charge: <span className="float-right">{userData.calling_code == '91' ? (<span>₹</span>) : (<span>$</span>)}{SHIPPING}</span></p>
             <hr />
-            <p className="total-price">Total: <span className="float-right">{userData.calling_code == '+91' ? (<span>₹</span>) : (<span>$</span>)}{TotalPrice}</span></p>
+            <p className="total-price">Total: <span className="float-right">{userData.calling_code == '91' ? (<span>₹</span>) : (<span>$</span>)}{TotalPrice}</span></p>
           </div>
           <button onClick={handleSubmit} className="pay-now-btn">Pay Now</button>
         </div>
@@ -268,7 +276,7 @@ const CartSummary = ({ user, cartItems }) => {
               />
               <div className="item-details">
                 <p className="item-name">{item.translations.name}</p>
-                {userData.calling_code == '+91' ? (<p className="item-price">₹{item.groupedPrices?.INR || item.price_national}</p>) : (<p className="item-price">${item.groupedPrices?.USD || item.price_international}</p>)}
+                {userData.calling_code == '91' ? (<p className="item-price">₹{item.groupedPrices?.INR || item.price_national}</p>) : (<p className="item-price">${item.groupedPrices?.USD || item.price_international}</p>)}
 
               </div>
               <button className="delete-btn" onClick={() => dispatch({ type: 'REMOVE_FROM_CART', payload: productId })}>

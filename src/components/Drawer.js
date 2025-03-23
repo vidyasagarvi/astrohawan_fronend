@@ -57,7 +57,7 @@ const Drawer = ({ isOpen, onClose, totalQuantity }) => {
 
   const fetchUserDetails = async () => {
     try {
-      const response = await axios.get(`${Config.apiUrl}api/users/details`, {
+      const response = await axios.get(`${Config.apiUrl}users/details`, {
         headers: {
           Authorization: `${localStorage.getItem('token')}`
         }
@@ -104,7 +104,7 @@ const Drawer = ({ isOpen, onClose, totalQuantity }) => {
                 return (
                   <div key={product._id} className="cart-item">
                     <div className="item-image">
-                      <img src={`${Config.apiUrl}${product._images[0]}`} alt={product._images[0]} className="item-image" />
+                      <img src={`${Config.imageUrl}${product._images[0]}`} alt={product._images[0]} className="item-image" />
                     </div>
                     <div className="item-details">
                     <p> {truncateText(product._categoryId[0].title, 70)}</p>

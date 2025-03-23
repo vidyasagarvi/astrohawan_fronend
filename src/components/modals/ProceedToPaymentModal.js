@@ -60,7 +60,7 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
   const handlePayment = async () => {
     try {
 
-      const response = await fetch(`${Config.apiUrl}api/payment/create`, {
+      const response = await fetch(`${Config.apiUrl}payment/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
 
           const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = response;
           // Verify Payment on Backend
-          const verification = await fetch(`${Config.apiUrl}api/payment/verify`, {
+          const verification = await fetch(`${Config.apiUrl}payment/verify`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
   async function createOrder(paymentData, userDetails, cartItems, GST, SHIPPING, TotalPrice) {
     
     try {
-      const response = await fetch(`${Config.apiUrl}api/payment/create-order`, { // Fix: Added backticks here
+      const response = await fetch(`${Config.apiUrl}payment/create-order`, { // Fix: Added backticks here
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ const ProceedToPaymentModal = ({ show, handleClose, userDetails, cartItems }) =>
     try {
 
       console.log('verificationResult',verificationResult)
-      const response = await fetch(`${Config.apiUrl}api/payment/send-order`, {
+      const response = await fetch(`${Config.apiUrl}payment/send-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

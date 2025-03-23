@@ -291,7 +291,7 @@ const OrderFlowModal = ({ show, handleClose, totalQuantity, productsByCategory }
             return (
               <div key={product._id} className="cart-item">
                 <div className="item-image">
-                  <img src={`${Config.apiUrl}${product._images[0]}`} alt={product._images[0]} className="item-image" />
+                  <img src={`${Config.imageUrl}${product._images[0]}`} alt={product._images[0]} className="item-image" />
                 </div>
                 <div className="item-details">
                   <p>{product._categoryId[0].title}</p>

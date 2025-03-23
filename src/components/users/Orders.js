@@ -19,7 +19,7 @@ function OrderDashboard() {
                 const token = localStorage.getItem('token');
                 if (!token) throw new Error('User is not authenticated');
 
-                const response = await axios.get(`${Config.apiUrl}api/payment/getuser-order/${token}/${page}`, {
+                const response = await axios.get(`${Config.apiUrl}payment/getuser-order/${token}/${page}`, {
                     headers: { Authorization: token },
                 });
 

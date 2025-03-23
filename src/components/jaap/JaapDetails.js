@@ -29,7 +29,7 @@ function JaapDetails() {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/jaap/get/${jaapId}/${language}`);
+                const response = await fetch(`${Config.apiUrl}jaap/get/${jaapId}/${language}`);
                 const data = await response.json();
 
                 if (response.ok) {
@@ -52,7 +52,7 @@ function JaapDetails() {
 
     const fetchPrice = async (quantity) => {
         try {
-            const priceResponse = await fetch(`${Config.apiUrl}api/services/getprice/${quantity}`);
+            const priceResponse = await fetch(`${Config.apiUrl}services/getprice/${quantity}`);
             const priceData = await priceResponse.json();
             if (priceResponse.ok) {
                 return priceData; // Return the fetched price
@@ -70,7 +70,7 @@ function JaapDetails() {
 
     const fetchRelatedItems = async (language) => {
         try {
-            const response = await fetch(`${Config.apiUrl}api/jaap/getall?lang=${language}`);
+            const response = await fetch(`${Config.apiUrl}jaap/getall?lang=${language}`);
             const data = await response.json();
             if (response.ok) {
                 setRelatedItems(data);
@@ -145,7 +145,7 @@ function JaapDetails() {
                                             {items.images.map((image, index) => (
                                                 <div className={`carousel-item ${index === 0 ? 'active' : ''} puja-image`} key={index}>
                                                     <img
-                                                        src={`${Config.apiUrl}${image}`}
+                                                        src={`${Config.imageUrl}${image}`}
                                                         alt={`Product ${index}`}
                                                         className="img-fluid bg-secondary rounded"
                                                     />
@@ -182,7 +182,7 @@ function JaapDetails() {
                                     <div className="puja-price">
                                         {!userData ? (
                                             <span className="price">  ₹{items.price_national} - ${items.price_international}</span>
-                                        ) : userData.calling_code === "+91" ? (
+                                        ) : userData.calling_code === "91" ? (
                                             <span className="price">  ₹{items.price_national}</span>
                                         ) : (
                                             <span className="price"> ${items.price_international}</span>
@@ -250,7 +250,7 @@ function JaapDetails() {
                                            <Link key={index} to={`/jaap/${Items.id}?lang=${language}`}>
                                             <div className="realted-item-images" key={Items.id} >
                                                 <img
-                                                    src={`${Config.apiUrl}${Items.images[0]}`}
+                                                    src={`${Config.imageUrl}${Items.images[0]}`}
                                                     alt="product"
                                                     style={{ width: '100%', height: '210px' }}
                                                 />
@@ -264,7 +264,7 @@ function JaapDetails() {
                                                 <p class="color-darkpink  mb-0">
                                                     {!userData ? (
                                                         <span>  ₹{Items.price_national} - ${Items.price_international}</span>
-                                                    ) : userData.calling_code === "+91" ? (
+                                                    ) : userData.calling_code === "91" ? (
                                                         <span>  ₹{Items.price_national}</span>
                                                     ) : (
                                                         <span> ${Items.price_international}</span>

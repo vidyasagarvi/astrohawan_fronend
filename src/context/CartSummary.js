@@ -32,7 +32,7 @@ const CartSummary = () => {
 
     const fetchUserDetails = async () => {
         try {
-            const response = await axios.get(`${Config.apiUrl}api/users/details`, {
+            const response = await axios.get(`${Config.apiUrl}users/details`, {
                 headers: {
                     Authorization: `${userData.token}`
                 }
@@ -63,8 +63,11 @@ const CartSummary = () => {
     const sumPrices = cart
         .filter(item => item.type !== "service")
         .reduce((acc, item) => {
-            const national = parseFloat(item.price_national || 0);
-            const international = parseFloat(item.price_international || 0);
+            let national = parseFloat(item.price_national || 0);
+            let international = parseFloat(item.price_international || 0);
+            national = national * item.quantity;
+            international = international * item.quantity
+
             return {
                 INR: acc.INR + national,
                 USD: acc.USD + international
@@ -95,7 +98,7 @@ const CartSummary = () => {
 
                 {!userData ? (
                     <span>Total : ₹{finalResult.INR} / ${finalResult.USD}</span>
-                ) : userData.calling_code === "+91" ? (
+                ) : userData.calling_code === "91" ? (
                     <span>Total : ₹{finalResult.INR}</span>
                 ) : (
                     <span>Total : ${finalResult.USD}</span>

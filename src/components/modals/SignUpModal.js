@@ -61,7 +61,7 @@ const SignUpModal = ({ show, handleClose, handleShowVerifyOtp, handleShowForgotP
     try {
       const phone = cleanPhoneNumber(mobile_no)
       const callingCode = cleanPhoneNumber(selectedCountry.value)
-      const response = await axios.post(`${Config.apiUrl}api/users/signup`, { name,callingCode:callingCode, mobile_no: phone,email, password });
+      const response = await axios.post(`${Config.apiUrl}users/signup`, { name,callingCode:callingCode, mobile_no: phone,email, password });
 
       if(response.data.userId!=""){
         handleShowVerifyOtp(response.data.userId);
