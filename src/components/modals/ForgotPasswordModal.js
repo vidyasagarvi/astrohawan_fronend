@@ -42,7 +42,7 @@ const ForgotPasswordModal = ({ show, handleClose, handleShowSignUp, handleLoginU
     try {
       const phone = cleanPhoneNumber(mobile_no)
       const callingCode = cleanPhoneNumber(selectedCountry.value)
-      const response = await axios.post(`${Config.apiUrl}api/users/forgotpassword`, {callingCode,phone});
+      const response = await axios.post(`${Config.apiUrl}users/forgotpassword`, {callingCode,phone});
       if(response.data.status=="success"){
         setIsSubmitted(true);
       }

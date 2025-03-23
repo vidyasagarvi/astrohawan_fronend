@@ -22,7 +22,7 @@ function HawansList() {
     useEffect(() => {
         const fetchHawans = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/hawans/getall?lang=${language}`); // Adjust the endpoint URL
+                const response = await fetch(`${Config.apiUrl}hawans/getall?lang=${language}`); // Adjust the endpoint URL
                 const data = await response.json();
 
                 if (response.ok) {
@@ -59,18 +59,18 @@ function HawansList() {
                         <Link to={`/hawan/${hawan.id}?lang=${language}`}>
 
                             <div className="service-images">
-                                <img src={`${Config.apiUrl}${hawan.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
+                                <img src={`${Config.imageUrl}${hawan.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
                             </div>
                             <div className='text-center mt-2'>
                                 <p className="fw-bold mb-0 text-black">{hawan.translations.name}</p>
                             </div>
 
-                            <div class="text-center mt-1">
-                                <p class="color-darkpink  mb-0">
+                            <div className="text-center mt-1">
+                                <p className="color-darkpink  mb-0">
 
                                 {!userData ? (
                                             <span>  ₹{hawan.price_national} - ${hawan.price_international}</span>
-                                        ) : userData.calling_code === "+91" ? (
+                                        ) : userData.calling_code === "91" ? (
                                             <span>  ₹{hawan.price_national}</span>
                                         ) : (
                                             <span> ${hawan.price_international}</span>
@@ -81,7 +81,6 @@ function HawansList() {
                         </Link>
                     </div>
                     <div className=" text-center">
-
                         <button onClick={() => addToCart({ ...hawan, type: "hawan" }, 1)}
                             className="payment_button btn border border-secondary rounded-pill px-5 text-primary">
                             Add to cart

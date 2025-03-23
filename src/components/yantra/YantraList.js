@@ -22,7 +22,7 @@ function YantraList() {
     useEffect(() => {
         const fetchHawans = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/yantra/getall?lang=${language}`); // Adjust the // Adjust the endpoint URL
+                const response = await fetch(`${Config.apiUrl}yantra/getall?lang=${language}`); // Adjust the // Adjust the endpoint URL
                 const data = await response.json();
 
                 if (response.ok) {
@@ -59,7 +59,7 @@ function YantraList() {
                     <Link to={`/yantras/${yantra.id}?lang=${language}`}>
 
                     <div className="service-images">
-                    <img src={`${Config.apiUrl}${yantra.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
+                    <img src={`${Config.imageUrl}${yantra.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
                         </div>
                         <div className='text-center mt-2'>
                                 <p className="fw-bold mb-0 text-black">{yantra.translations.name}</p>
@@ -69,7 +69,7 @@ function YantraList() {
                                 <p class="color-darkpink  mb-0">
                                 {!userData ? (
                                             <span>  ₹{yantra.price_national} - ${yantra.price_international}</span>
-                                        ) : userData.calling_code === "+91" ? (
+                                        ) : userData.calling_code === "91" ? (
                                             <span>  ₹{yantra.price_national}</span>
                                         ) : (
                                             <span> ${yantra.price_international}</span>

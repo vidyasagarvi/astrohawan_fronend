@@ -20,7 +20,7 @@ function JaapList() {
     useEffect(() => {
         const fetchJaaps = async () => {
             try {
-                const response = await fetch(`${Config.apiUrl}api/jaap/getall?lang=${language}`); // Adjust the // Adjust the endpoint URL
+                const response = await fetch(`${Config.apiUrl}jaap/getall?lang=${language}`); // Adjust the // Adjust the endpoint URL
                 const data = await response.json();
 
                 if (response.ok) {
@@ -57,7 +57,7 @@ function JaapList() {
                     <Link to={`/jaap/${jaap.id}?lang=${language}`}>
 
                     <div className="service-images">
-                    <img src={`${Config.apiUrl}${jaap.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
+                    <img src={`${Config.imageUrl}${jaap.images[0]}`} alt="product" style={{ width: '100%', height: '230px' }} />
                         </div>
                         <div className='text-center mt-2'>
                                 <p className="fw-bold mb-0 text-black">{jaap.translations.name}</p>
@@ -67,7 +67,7 @@ function JaapList() {
                                 <p class="color-darkpink  mb-0">
                                 {!userData ? (
                                             <span>  ₹{jaap.price_national} - ${jaap.price_international}</span>
-                                        ) : userData.calling_code === "+91" ? (
+                                        ) : userData.calling_code === "91" ? (
                                             <span>  ₹{jaap.price_national}</span>
                                         ) : (
                                             <span> ${jaap.price_international}</span>

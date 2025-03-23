@@ -45,7 +45,7 @@ const handleUpdatepassword = async () => {
     if (!validateForm()) return;
     setIsLoading(true);
     try {
-      const response = await axios.post(`${Config.apiUrl}api/users/updatepassword`, { password, new_password, token});
+      const response = await axios.post(`${Config.apiUrl}users/updatepassword`, { password, new_password, token});
     } catch (error) {
       setErrors(newErrors);
     } finally {

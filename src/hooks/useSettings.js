@@ -9,7 +9,7 @@ const useSettings = (language) => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const response = await fetch(`${Config.apiUrl}api/settings/gets`);
+        const response = await fetch(`${Config.apiUrl}settings/gets`);
         if (!response.ok) {
           throw new Error('Failed to fetch settings');
         }

@@ -32,7 +32,7 @@ function CommonCart({cart,isMobile, addToCart, removeFromCart }) {
 
     const fetchUserDetails = async () => {
         try {
-            const response = await axios.get(`${Config.apiUrl}api/users/details`, {
+            const response = await axios.get(`${Config.apiUrl}users/details`, {
                 headers: {
                     Authorization: `${localStorage.getItem('token')}`
                 }
@@ -69,7 +69,7 @@ function CommonCart({cart,isMobile, addToCart, removeFromCart }) {
                                     {cart.map((item) => (
                                         <div key={item._id} className="cart-item">
                                             <div className="item-image">
-                                                <img src={`${Config.apiUrl}${JSON.parse(item.images)}`} alt={JSON.parse(item.images)} className="item-image" />
+                                                <img src={`${Config.imageUrl}${JSON.parse(item.images)}`} alt={JSON.parse(item.images)} className="item-image" />
                                             </div>
                                             <div className="item-details">
                                                 <p>{item.title}</p>

@@ -141,7 +141,7 @@ function PujaStoreDetails({ setIsDrawerOpen }) {
                                     <div id="carouselId" className="carousel slide position-relative" data-bs-ride="carousel">
                                         <div className="carousel-inner" role="listbox">
                                             {_images && _images.map((image, index) => (
-                                                <div className="carousel-item active rounded"><img key={index} src={`${Config.apiUrl}${image}`} alt={`Product ${index}`} className="img-fluid w-100 h-80 bg-secondary rounded" /> </div>
+                                                <div className="carousel-item active rounded"><img key={index} src={`${Config.imageUrl}${image}`} alt={`Product ${index}`} className="img-fluid w-100 h-80 bg-secondary rounded" /> </div>
                                             ))}
                                         </div>
                                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">

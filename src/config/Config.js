@@ -1,16 +1,20 @@
+const live = true;
+
 const Config = {
-    apiUrl: 'http://localhost:3000/', //local
-    //apiUrl: 'https://api.astrohawan.com/', //Live
+    apiUrl: live 
+        ? 'https://www.thesatim.com/api2/api2/'  // Live
+        : 'http://localhost:4000/api2/',   // Local
+
+    imageUrl: live 
+        ? 'https://www.thesatim.com/api2/api2/'  // Live
+        : 'http://localhost:4000/api2/',   // Local
+
     endpoints: {
       pujastore: 'api/pujastore',
       pujastoreAdmin: 'api/pujastore/admin/store',
       SignIn: 'api/login',
       SignUp: 'api/register'
-      //getpujaProducts: (id) => `/product/${id}`,
-      //deletepujaProduct: (id) => `/delete/${id}`,
-      //searchProduct: (id) => `/searchProduct/${id}`,
     },
-  };
-  
-  export default Config;
+};
 
+export default Config;

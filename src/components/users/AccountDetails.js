@@ -19,7 +19,7 @@ useEffect(() => {
             const token = localStorage.getItem('token');
             if (!token) throw new Error('User is not authenticated');
 
-            const response = await axios.get(`${Config.apiUrl}api/users/details`, {
+            const response = await axios.get(`${Config.apiUrl}users/details`, {
                 headers: { Authorization: token },
             });
 
@@ -63,7 +63,7 @@ const handleUpdateuser = async () => {
     if (!validateForm(userDetails)) return;
     setIsLoading(true);
     try {
-    //  const response = await axios.post(`${Config.apiUrl}api/users/updatepassword`, { password, new_password, token});
+    //  const response = await axios.post(`${Config.apiUrl}users/updatepassword`, { password, new_password, token});
     } catch (error) {
       setErrors(newErrors);
     } finally {

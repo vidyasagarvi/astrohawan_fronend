@@ -2,6 +2,7 @@
 import React, { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 const HawansList = lazy(() => import('./hawans/HawansList'))
+import '../css/Mahakumbh.css'
 
 const Helps = () => {
   const { t } = useTranslation();
@@ -19,8 +20,6 @@ const Helps = () => {
 
       </div>
     </div>
-
-
 
   );
 };

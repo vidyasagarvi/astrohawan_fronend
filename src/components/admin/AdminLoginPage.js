@@ -15,7 +15,7 @@ function AdminLoginPage() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const response = await fetch(`${Config.apiUrl}api/admin/login`, {
+        const response = await fetch(`${Config.apiUrl}admin/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -49,7 +49,7 @@ const LoginModal = ({ show, handleClose, handleShowSignUp, handleShowForgotPassw
     try {
       const phone = cleanPhoneNumber(phoneNumber)
       const callingCode = cleanPhoneNumber(selectedCountry.value)
-      const response = await axios.post(`${Config.apiUrl}api/users/login`, {callingCode,phone, password });
+      const response = await axios.post(`${Config.apiUrl}users/login`, {callingCode,phone, password });
       localStorage.setItem("userData", JSON.stringify({
         token: response.data.user.id,
         calling_code: response.data.user.calling_code
